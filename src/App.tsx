@@ -1,8 +1,16 @@
+import AppRoutes from "./router/AppRoutes"
+import ScrollToTop from "./shared/components/ScrollToTop/ScrollToTop"
+import { AuthProvider } from "./shared/context/auth/AuthContext"
+import DefaultLayout from "./shared/layouts/DefaultLayout"
+
 function App() {
   return (
-    <h1 className="text-3xl font-bold text-red-500">
-      Patient App
-    </h1>
+    <AuthProvider>
+      <DefaultLayout>
+        <ScrollToTop />
+        <AppRoutes />
+      </DefaultLayout>
+    </AuthProvider>
   )
 }
 
