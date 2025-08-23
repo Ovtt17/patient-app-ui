@@ -2,7 +2,7 @@ import { createContext, useEffect, useState, type ReactNode } from "react";
 import type { AuthContextType } from "./types";
 import { useNavigate } from 'react-router-dom';
 import type { User } from "@/modules/auth/types/user.types";
-import { ROUTES } from "@/shared/constants/ROUTES";
+import { Routes } from "@/shared/constants/routes";
 import { getCurrentUserInfo, logoutUser } from "@/modules/auth/api/auth.api";
 import { Role } from "@/modules/auth/types/role.types";
 
@@ -17,14 +17,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const login = (user: User) => {
     setUser(user);
     setIsAuthenticated(true);
-    navigate(ROUTES.HOME);
+    navigate(Routes.HOME);
   };
 
   const logout = async () => {
     setUser(null);
     setIsAuthenticated(false);
     await logoutUser();
-    navigate(ROUTES.LOGIN);
+    navigate(Routes.LOGIN);
   };
 
   const isUserAdmin = (): boolean => user ? user.roles.includes(Role.ADMIN) : false;
