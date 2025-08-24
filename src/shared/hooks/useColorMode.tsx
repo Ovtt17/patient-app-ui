@@ -6,14 +6,15 @@ const useColorMode = () => {
   const [colorMode, setColorMode] = useState<'light' | 'dark' | 'system'>('system');
 
   useEffect(() => {
+
     const className = 'dark';
-    const bodyClass = window.document.body.classList;
+    const htmlClass = window.document.documentElement.classList;
 
     const applyMode = (mode: 'light' | 'dark') => {
       if (mode === 'dark') {
-        bodyClass.add(className);
+        htmlClass.add(className);
       } else {
-        bodyClass.remove(className);
+        htmlClass.remove(className);
       }
     };
 

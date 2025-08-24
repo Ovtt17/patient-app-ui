@@ -26,7 +26,7 @@ const DropdownUser = () => {
         >
           <button
             onClick={logout}
-            className="flex items-center gap-4 px-6 py-4 text-sm font-medium hover:text-red-600 dark:hover:text-red-400 transition-colors lg:text-base">
+            className="flex items-center gap-4 px-6 py-4 text-sm font-medium hover:text-red-600 dark:hover:text-red-400 transition-colors lg:text-base cursor-pointer">
             <ArrowLeftStartOnRectangleIcon className="w-6 h-6" />
             Cerrar Sesión
           </button>
