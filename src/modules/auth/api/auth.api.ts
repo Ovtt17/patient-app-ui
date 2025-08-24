@@ -24,7 +24,7 @@ export const activateUser = async (token: string): Promise<string> => {
   }
 };
 
-export const login = async (loginRequest: LoginRequest): Promise<User> => {
+export const signInUser = async (loginRequest: LoginRequest): Promise<User> => {
   try {
     const response = await axiosInstance.post('/auth/login', loginRequest);
     const user: User = response.data;
