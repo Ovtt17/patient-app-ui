@@ -20,7 +20,7 @@ const Header = (props: {
             className="block rounded border border-gray-200 bg-white p-2 shadow-sm dark:border-gray-700 dark:bg-gray-900"
           >
             <span className="relative block h-6 w-6 cursor-pointer">
-              <Menu />
+              <Menu className='text-black dark:text-white' />
             </span>
           </button>
           <Link className="block flex-shrink-0" to="/">

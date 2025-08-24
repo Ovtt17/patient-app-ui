@@ -9,7 +9,7 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { isAuthenticated } = useAuth();
 
   return (
-    <div className="bg-white transition-colors duration-300">
+    <div>
       <DefaultToastifyContainer />
       <div className="flex h-screen overflow-hidden">
         <div
