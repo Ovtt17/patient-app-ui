@@ -1,5 +1,3 @@
-import type { Role } from "./role.types";
-
 export type RegisterRequest = {
   firstName: string;
   lastName: string;
@@ -8,5 +6,4 @@ export type RegisterRequest = {
   password: string;
   confirmPassword: string;
   phone: string;
-  role: Role;
 };
