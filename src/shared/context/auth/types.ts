@@ -8,4 +8,6 @@ export interface AuthContextType {
   login: (user: User) => void;
   logout: () => Promise<void>;
   updateUser: (userUpdated: User) => void;
+  isUserDoctor: () => boolean;
+  isUserPatient: () => boolean;
 }
