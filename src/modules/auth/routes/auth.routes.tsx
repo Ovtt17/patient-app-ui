@@ -5,7 +5,7 @@ import PublicRoute from "@/router/PublicRoute";
 import Loader from "@/shared/components/Loader/Loader";
 
 const Login = lazy(() => import("../pages/Login"));
-const SignUp = lazy(() => import("../pages/Signup"));
+const SignUp = lazy(() => import("../pages/SignUp"));
 
 const authRoutes: RouteObject[] = [
   {
