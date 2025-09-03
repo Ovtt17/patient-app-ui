@@ -28,6 +28,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const isUserAdmin = (): boolean => user ? user.roles.includes(Role.ADMIN) : false;
+  const isUserDoctor = (): boolean => user ? user.roles.includes(Role.DOCTOR) : false;
+  const isUserPatient = (): boolean => user ? user.roles.includes(Role.PACIENTE) : false;
 
   const updateUser = (userUpdated: User) => {
     setUser(prevUser => prevUser && String(prevUser.id) === String(userUpdated.id)
@@ -58,7 +60,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, isUserAdmin, user, loading, login, logout, updateUser }}>
+    <AuthContext.Provider value={{
+      isAuthenticated,
+      isUserAdmin,
+      user,
+      loading,
+      login,
+      logout,
+      updateUser,
+      isUserDoctor,
+      isUserPatient
+    }}>
       {children}
     </AuthContext.Provider>
   );
