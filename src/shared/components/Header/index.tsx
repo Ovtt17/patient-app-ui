@@ -24,7 +24,7 @@ const Header = (props: {
             </span>
           </button>
           <Link className="block flex-shrink-0" to="/">
-            <img alt="Logo" className="w-12 h-12 rounded-lg" />
+            <img src="/logo.png" alt="Logo" className="w-12 h-12 rounded-lg" />
           </Link>
         </div>
         <div className="flex items-center gap-4">
