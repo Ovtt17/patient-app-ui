@@ -28,8 +28,7 @@ const HeaderHome: FC<PropsWithChildren> = ({ children }) => {
             <Link to="/especialidades" className="hover:text-blue-600 text-xl">Especialidades</Link>
             <Link to="/centros-diagnosticos" className="hover:text-blue-600 text-xl">Centros Diagnósticos</Link>
             <Link to="/servicios" className="hover:text-blue-600 text-xl">Servicios Hospitalarios</Link>
-            <Link to="/registrate" className="hover:text-blue-600 text-xl">Registrate</Link>
-            <Link to="/inicia-sesion" className="hover:text-blue-600 text-xl">Inicia Sesion</Link>
+            <Link to="/login" className="hover:text-blue-600 text-xl">Inicia Sesion</Link>
           </nav>
 
           {/* Botón menú móvil */}
@@ -49,7 +48,7 @@ const HeaderHome: FC<PropsWithChildren> = ({ children }) => {
             <Link to="/centros-diagnosticos" className="hover:text-blue-600">Centros Diagnósticos</Link>
             <Link to="/servicios" className="hover:text-blue-600">Servicios Hospitalarios</Link>
             <Link to="/registrate" className="hover:text-blue-600">Registrate</Link>
-            <Link to="/inicia-sesion" className="hover:text-blue-600">Inicia Sesion</Link>
+            <Link to="/login" className="hover:text-blue-600">Inicia Sesion</Link>
           </nav>
         )}
       </header>
