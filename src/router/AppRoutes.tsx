@@ -7,6 +7,7 @@ import ProtectedRoutes from "./ProtectedRoute";
 import { Role } from "@/modules/auth/types/role.types";
 import authRoutes from "@/modules/auth/routes/auth.routes";
 import protectedRoutes from "./protected.routes";
+import DefaultLayout from "@/shared/layouts/DefaultLayout";
 
 const AppRoutes = () => {
   const { isAuthenticated, loading } = useAuth();
@@ -17,10 +18,13 @@ const AppRoutes = () => {
 
   return (
     <Routes>
+
       <Route path="/oauth-success" element={<OAuthSuccess />} />
-      {!isAuthenticated && authRoutes.map((route) => (
-        <Route key={route.path} path={route.path} element={route.element} />
-      ))}
+ 
+      {!isAuthenticated &&
+        authRoutes.map((route) => (
+          <Route key={route.path} path={route.path} element={route.element} />
+        ))}
 
       {/* If user is authenticated */}
       {isAuthenticated && (
@@ -28,17 +32,19 @@ const AppRoutes = () => {
           <Route
             element={
               <ProtectedRoutes
-                allowedRoles={[]}
+                allowedRoles={[]} 
                 redirectPath={ROUTES.LOGIN}
               />
             }
           >
-            {protectedRoutes.map((route) => (
-              <Route key={route.path} path={route.path} element={route.element} />
-            ))}
+            <Route element={<DefaultLayout> {/* envuelve layout aquí */}
+              {protectedRoutes.map((route) => (
+                <Route key={route.path} path={route.path} element={route.element} />
+              ))}
+            </DefaultLayout>} />
           </Route>
 
-          {/* If user is authenticated check roles if user is doctor*/}
+          {/*  If user is authenticated check roles if user is doctor*/}
           <Route
             element={
               <ProtectedRoutes
@@ -47,15 +53,15 @@ const AppRoutes = () => {
               />
             }
           >
-            {/* Posible routes for doctor */}
+            {/* Posible routes for doctor  */}
           </Route>
         </>
-      )}
+      )} 
 
       {/* 404 Not Found */}
       <Route path="*" element={<Navigate to={ROUTES.HOME} />} />
     </Routes>
-  )
-}
+  );
+};
 
 export default AppRoutes;
