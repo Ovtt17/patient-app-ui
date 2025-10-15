@@ -6,17 +6,12 @@ const LoginHeader = () => {
     <div className="flex flex-col items-center justify-center text-center gap-4">
       <NavLink target="_blank" className="inline-block" to={Routes.HOME}>
         <img
-          src="/LogoD.png"
-          className="w-60 h-25 object-contain hidden dark:block"
-          alt="Logo"
-        />
-        <img
           src="/logo.png"
-          className="w-60 h-25 object-contain dark:hidden"
+          className="w-60 h-25 object-contain"
           alt="Logo"
         />
       </NavLink>
-      <h2 className="text-2xl font-bold sm:text-title-xl2">
+      <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight font-serif text-blue-600">
         Iniciar Sesión
       </h2>
     </div>
