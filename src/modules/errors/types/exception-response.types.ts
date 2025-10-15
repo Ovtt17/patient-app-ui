@@ -6,6 +6,7 @@ export interface ExceptionResponse {
 }
 
 export interface ProcessedError {
+  message: string;
   mainError?: string;
   validationErrors?: string[];
 }
