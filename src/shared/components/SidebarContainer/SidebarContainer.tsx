@@ -14,16 +14,18 @@ interface SidebarContainerProps {
 
 /**
  * SidebarContainer
- * Determina qué sidebar mostrar según el rol del usuario.
- * Usa Framer Motion para animar entrada/salida.
+ * Si el usuario está autenticado.
  */
 const SidebarContainer: FC<SidebarContainerProps> = ({
   sidebarOpen,
   setSidebarOpen,
 }) => {
-  const { user } = useAuth();
+  const { user, isAuthenticated, loading } = useAuth();
 
-  if (!user) return null;
+  // Evita renderizar o ejecutar lógica mientras carga o no hay sesión
+  if (loading || !isAuthenticated || !user) {
+    return null;
+  }
 
   // Buscar el primer rol válido del usuario
   const role = user.roles?.find(
@@ -59,7 +61,6 @@ const SidebarContainer: FC<SidebarContainerProps> = ({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={() => setSidebarOpen(false)}
-            // 🧩 FIX: pointer-events controlado, evita bloquear clics fuera
             className={`fixed inset-0 z-40 bg-black/60 md:hidden ${
               sidebarOpen ? "pointer-events-auto" : "pointer-events-none"
             }`}
