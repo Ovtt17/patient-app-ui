@@ -2,19 +2,27 @@ import { handleError } from "@/modules/errors/utils/handle-error";
 import axiosInstance from "@/config/axiosInstance";
 import type { DoctorRequest } from "../types/doctor-request.types";
 import type { SpecialtyReq, SpecialtyRes } from "@/modules/doctors/types/specialty.type";
-import type { Doctor } from "@/shared/types/doctor.types";
 import type { PatientPagedRes } from "@/shared/types/patient.page.type";
+import type { DoctorPagedRes } from "../types/admin.page.type";
 
 
-export const getAllDoctors = async (): Promise<Doctor[]> => {
+
+export const getAllDoctors = async (
+  page: number = 0,
+  size: number = 20,
+  sortBy: string = "createdDate",
+  sortOrder: "ASC" | "DESC" = "DESC"
+): Promise<DoctorPagedRes> => {
   try {
-    const response = await axiosInstance.get('/doctors');
-    const doctors: Doctor[] = response.data;
-    return doctors;
+    const response = await axiosInstance.get<DoctorPagedRes>("/doctors", {
+      params: { page, size, sortBy, sortOrder },
+    });
+    return response.data;
   } catch (error) {
     throw handleError(error);
   }
 };
+
 
 export const createDoctor = async (request: DoctorRequest): Promise<string> => {
   try {
