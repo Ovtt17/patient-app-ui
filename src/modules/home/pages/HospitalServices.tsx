@@ -1,4 +1,5 @@
-import HeaderHome from "./HeaderHome";
+import HeaderHome from "../HeaderHome";
+
 
 const HospitalServices = () => {
   const servicios = [
