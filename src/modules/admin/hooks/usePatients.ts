@@ -1,6 +1,6 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { getAllActivePatients } from "../api/admin.api";
-import type { PatientPagedRes } from "@/shared/types/patient.page.type";
+import type { PatientPagedRes } from "@/modules/patient/types/patient.page.type";
 import type { ProcessedError } from "@/modules/errors/types/exception-response.types";
 
 
