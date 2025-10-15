@@ -1,14 +1,14 @@
 import { handleError } from "@/modules/errors/utils/handle-error";
 import axiosInstance from "@/config/axiosInstance";
-import type { Doctor } from "@/shared/types/doctor.types";
 import type { DoctorMedicalInfo } from "../types/doctor.medicalinfo";
-import type { Patient } from "@/shared/types/patient.types";
 import type { PatientMedicalInfo } from "../types/patient.medicalinfo";;
 import type { ScheduleRes, ScheduleReq, DayOfWeek } from "../types/schedule.types";
 import type { DoctorUnavailabilityReq, DoctorUnavailabilityRes } from "../types/doctorUnavailability.types";
 import type { DoctorAvailabilityRes } from "../types/doctorAvailability.type";
 import type { SpecialtyRes } from "../types/specialty.type";
 import type { AppointmentReq, AppointmentRes, AppointmentStatus } from "@/shared/types/appointment.type";
+import type { Doctor } from "../types/doctor.types";
+import type { Patient } from "@/modules/patient/types/patient.types";
 
 
 export const updateDoctorMedicalInfo = async (userId: string, request: DoctorMedicalInfo) : Promise<Doctor> => {
