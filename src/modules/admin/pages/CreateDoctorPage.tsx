@@ -29,10 +29,6 @@ const CreateDoctorPage: FC = () => {
     <article className={cn(
       "min-h-screen bg-white/40 dark:bg-gray-900 text-black dark:text-white shadow-2xl"
     )}>
-      <ul className="flex justify-end pr-10 py-2">
-        <DarkModeSwitcher />
-      </ul>
-
       <div className="flex flex-col justify-center items-center px-6 sm:px-8">
         <div className={cn(
           "bg-white/40 dark:bg-gray-800 w-full flex justify-center",
