@@ -2,12 +2,8 @@ import { useState, type ReactNode } from "react";
 import { useAuth } from "../context/auth/useAuth";
 import DefaultToastifyContainer from "../components/DefaultToastifyContainer/DefaultToastifyContainer";
 import Header from "../components/Header";
-import SidebarContainer from "../components/SidebarContainer/SidebarContainer";
+import Sidebar from "../components/Sidebar/Sidebar";
 
-/**
- * DefaultLayout
- * - Aplica estructura base de la app solo cuando el usuario está autenticado.
- */
 const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { isAuthenticated } = useAuth();
@@ -24,13 +20,12 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
     );
   }
 
-  // Usuario autenticado -> renderizar layout completo
   return (
     <div className="flex h-screen overflow-hidden bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
       <DefaultToastifyContainer />
 
       {/* Sidebar lateral */}
-      <SidebarContainer
+      <Sidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
       />
