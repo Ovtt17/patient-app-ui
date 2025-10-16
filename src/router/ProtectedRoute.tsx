@@ -3,10 +3,13 @@ import { useAuth } from "@/shared/context/auth/useAuth";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { Routes } from "@/shared/constants/routes";
 import { Role } from '../modules/auth/types/role.types';
+import type { ReactNode } from "react";
+
 
 interface ProtectedRoutesProps {
   allowedRoles?: Role[];
   redirectPath: string;
+  children?: ReactNode; 
 }
 
 const ProtectedRoutes: FC<ProtectedRoutesProps> = ({ allowedRoles = [], redirectPath }) => {

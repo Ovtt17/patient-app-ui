@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { getPatientByUserId } from "../api/doct.api";
-import type { Patient } from "@/shared/types/patient.types";
+import type { ProcessedError } from "@/modules/errors/types/exception-response.types";
+import type { Patient } from "@/modules/patient/types/patient.types";
 
 
 export const usePatientByUserId = (userId: string) => {
-  return useQuery<Patient, Error>({
+  return useQuery<Patient, ProcessedError>({
     queryKey: ["patientByUser", userId],  
     queryFn: () => getPatientByUserId(userId),
     enabled: !!userId,                     

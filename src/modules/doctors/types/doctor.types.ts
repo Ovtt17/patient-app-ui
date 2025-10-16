@@ -1,4 +1,4 @@
-import type { Role } from "../../modules/admin/types/role.types";
+import type { Role } from "@/modules/admin/types/role.types";
 import type { Gender } from "@/shared/types/gender.types";
 
 

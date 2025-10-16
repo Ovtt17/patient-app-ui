@@ -1,4 +1,5 @@
-import type { Patient } from "./patient.types";
+import type { Patient } from "@/modules/patient/types/patient.types";
+
 
 export interface PatientPagedRes {
   patients: Patient [];
