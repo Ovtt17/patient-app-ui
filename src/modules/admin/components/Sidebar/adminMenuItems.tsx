@@ -7,8 +7,8 @@ import {
   DocumentPlusIcon,
   PencilSquareIcon,
 } from "@heroicons/react/24/outline";
-import type { SidebarMenuItem } from "../../../../shared/types/sidebar-menu-item";
-import { RoutesAdmin } from "@/shared/constants/routes";
+import type { SidebarMenuItem } from "@/shared/types/sidebar-menu-item.ts";
+import { RoutesAdmin } from "@/modules/admin/routes/RoutesAdmin.ts";
 
 const adminMenuItems: SidebarMenuItem[] = [
   { 

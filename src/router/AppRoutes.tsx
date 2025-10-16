@@ -1,16 +1,17 @@
-import OAuthSuccess from "@/modules/auth/components/oauth/OAuthSuccess";
 import Loader from "@/shared/components/Loader/Loader";
 import { Routes as ROUTES } from "@/shared/constants/routes";
 import { useAuth } from "@/shared/context/auth/useAuth";
 import { Navigate, Route, Routes } from "react-router-dom";
 import ProtectedRoutes from "./ProtectedRoute";
-import { Role } from "@/modules/auth/types/role.types";
 import authRoutes from "@/modules/auth/routes/auth.routes";
 import protectedRoutes from "./protected.routes";
-import DefaultLayout from "@/shared/layouts/DefaultLayout";
+import publicRoutes from "@/router/public.routes.tsx";
+import { Role } from "@/modules/auth/types/role.types.ts";
+import adminRoutes from "@/modules/admin/routes/admin.routes.tsx";
+import doctorRoutes from "@/modules/doctors/routes/doctor.routes";
 
 const AppRoutes = () => {
-  const { isAuthenticated, loading } = useAuth();
+  const { loading } = useAuth();
 
   if (loading) {
     return <Loader />;
@@ -18,45 +19,40 @@ const AppRoutes = () => {
 
   return (
     <Routes>
+      {/* Rutas públicas */}
+      {publicRoutes.map((route) => (
+        <Route key={route.path} path={route.path} element={route.element} />
+      ))}
 
-      <Route path="/oauth-success" element={<OAuthSuccess />} />
- 
-      {!isAuthenticated &&
-        authRoutes.map((route) => (
+      {/* Rutas de autenticación (login, registro, etc.) */}
+      {authRoutes.map((route) => (
+        <Route key={route.path} path={route.path} element={route.element} />
+      ))}
+
+      {/* Rutas protegidas para cualquier usuario autenticado */}
+      <Route element={<ProtectedRoutes />}>
+        {protectedRoutes.map((route) => (
           <Route key={route.path} path={route.path} element={route.element} />
         ))}
+      </Route>
 
-      {/* If user is authenticated */}
-      {isAuthenticated && (
-        <>
-          <Route
-            element={
-              <ProtectedRoutes
-                allowedRoles={[]} 
-                redirectPath={ROUTES.LOGIN}
-              />
-            }
-          >
-            <Route element={<DefaultLayout> {/* envuelve layout aquí */}
-              {protectedRoutes.map((route) => (
-                <Route key={route.path} path={route.path} element={route.element} />
-              ))}
-            </DefaultLayout>} />
-          </Route>
+      {/* Rutas protegidas por rol: ADMIN */}
+      <Route
+        element={<ProtectedRoutes allowedRoles={[Role.ADMIN]} redirectPath={ROUTES.LOGIN} />}
+      >
+        {adminRoutes.map((route) => (
+          <Route key={route.path} path={route.path} element={route.element} />
+        ))}
+      </Route>
 
-          {/*  If user is authenticated check roles if user is doctor*/}
-          <Route
-            element={
-              <ProtectedRoutes
-                allowedRoles={[Role.DOCTOR]}
-                redirectPath={ROUTES.HOME}
-              />
-            }
-          >
-            {/* Posible routes for doctor  */}
-          </Route>
-        </>
-      )} 
+      {/* Rutas protegidas por rol: DOCTOR */}
+      <Route
+        element={<ProtectedRoutes allowedRoles={[Role.DOCTOR]} redirectPath={ROUTES.LOGIN} />}
+      >
+        {doctorRoutes.map((route) => (
+          <Route key={route.path} path={route.path} element={route.element} />
+        ))}
+      </Route>
 
       {/* 404 Not Found */}
       <Route path="*" element={<Navigate to={ROUTES.HOME} />} />

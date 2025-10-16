@@ -1,48 +1,69 @@
-import { Link } from "react-router-dom";
-import DropdownUser from "./DropdownUser.tsx";
-import DarkModeSwitcher from "./DarkModeSwitcher.tsx";
-import { Menu } from "lucide-react";
+import { Link } from 'react-router-dom';
+import { motion, useAnimation } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import DropdownUser from './DropdownUser.tsx';
+import DarkModeSwitcher from './DarkModeSwitcher.tsx';
+import SidebarIcon from './SidebarIcon.tsx';
 
-interface HeaderProps {
+const Header = (props: {
   sidebarOpen: string | boolean | undefined;
-  setSidebarOpen: (open: boolean) => void;
-}
+  setSidebarOpen: (arg0: boolean) => void;
+}) => {
+  const controls = useAnimation();
+  const [lastScroll, setLastScroll] = useState(0);
 
-const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
+  const handleScroll = () => {
+    const container = document.getElementById('layout-scroll-container');
+    if (!container) return;
+
+    const currentScroll = container.scrollTop;
+    if (currentScroll > lastScroll && currentScroll > 50) {
+      // Scroll hacia abajo -> ocultar header
+      controls.start({ y: '-100%', transition: { duration: 0.3 } });
+    } else {
+      // Scroll hacia arriba -> mostrar header
+      controls.start({ y: '0%', transition: { duration: 0.3 } });
+    }
+    setLastScroll(currentScroll);
+  };
+
+  useEffect(() => {
+    const container = document.getElementById('layout-scroll-container');
+    if (!container) return;
+
+    container.addEventListener('scroll', handleScroll);
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, [lastScroll]);
+
   return (
-    <header className="sticky bg-white dark:bg-gray-900 shadow-lg top-0 z-50 flex w-full h-16">
-      <div className="flex flex-grow items-center justify-between px-4 py-3 md:px-6">
+    <motion.header
+      animate={controls}
+      className="sticky bg-gradient-light dark:bg-gradient-dark shadow-lg top-0 z-50 flex w-full h-[10%] drop-shadow-1 dark:drop-shadow-none"
+    >
+      <div className="flex flex-grow items-center justify-between px-4 py-4 md:px-6">
         <div className="flex items-center gap-2 sm:gap-4">
-          {/* Botón del menú lateral */}
           <button
             aria-controls="sidebar"
             onClick={(e) => {
               e.stopPropagation();
-              setSidebarOpen(!sidebarOpen);
+              props.setSidebarOpen(!props.sidebarOpen);
             }}
-            className="block rounded border border-gray-200 bg-white p-2 shadow-sm 
-                       dark:border-gray-700 dark:bg-gray-900 md:hidden"
+            className="z-50 block rounded-sm border border-stroke bg-white p-1.5 shadow-sm dark:border-strokedark dark:bg-boxdark"
           >
-            <span className="relative block h-6 w-6 cursor-pointer">
-              <Menu className="text-black dark:text-white" />
-            </span>
+            <SidebarIcon sidebarOpen={props.sidebarOpen} />
           </button>
-
-          {/* Logo */}
           <Link className="block flex-shrink-0" to="/">
-            <img src="/logo.png" alt="Logo" className="w-12 h-12 rounded-lg" />
+            <img src='/logo.png' alt="Logo" className='w-13 h-13 rounded-lg' />
           </Link>
         </div>
-
-        {/* Controles derechos */}
-        <div className="flex items-center gap-4">
-          <ul className="flex items-center gap-3">
+        <div className="flex items-center gap-3 2xsm:gap-7">
+          <ul className="flex items-center gap-2 2xsm:gap-4">
             <DarkModeSwitcher />
             <DropdownUser />
           </ul>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 };
 

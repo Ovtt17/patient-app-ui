@@ -34,7 +34,7 @@ const Profile = () => {
     const fetchProfile = async () => {
       setLoading(true);
       try {
-        const url = isUserDoctor()
+        const url = isUserDoctor
           ? `/doctors/users/${user.id}`
           : `/patients/users/${user.id}`;
 
