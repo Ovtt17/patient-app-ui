@@ -1,9 +1,10 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "@/shared/context/auth/useAuth";
 import { Routes as ROUTES } from "@/shared/constants/routes";
+import type {ReactNode} from "react";
 
 interface PublicRouteProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const PublicRoute = ({ children }: PublicRouteProps) => {
