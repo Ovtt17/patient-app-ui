@@ -1,7 +1,6 @@
 import { useState, type FC } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
-import DarkModeSwitcher from "@/shared/components/Header/DarkModeSwitcher";
 import { cn } from "@/lib/utils";
 import type { DoctorRequest } from "@/modules/admin/types/doctor-request.types";
 import CreateDoctorForm from "../components/CreateDoctorForm";
