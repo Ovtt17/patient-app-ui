@@ -1,30 +1,36 @@
-import type { FC } from "react";
-import { useAuth } from "@/shared/context/auth/useAuth";
-import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { Routes } from "@/shared/constants/routes";
-import { Role } from '../modules/auth/types/role.types';
-import type { ReactNode } from "react";
+import type {FC, ReactNode} from "react";
+import {useAuth} from "@/shared/context/auth/useAuth";
+import {Navigate, Outlet, useLocation} from "react-router-dom";
+import {Routes} from "@/shared/constants/routes";
+import {Role} from '../modules/auth/types/role.types';
 
 
 interface ProtectedRoutesProps {
   allowedRoles?: Role[];
-  redirectPath: string;
-  children?: ReactNode; 
+  redirectPath?: string;
+  children?: ReactNode;
 }
 
-const ProtectedRoutes: FC<ProtectedRoutesProps> = ({ allowedRoles = [], redirectPath }) => {
-  const { isAuthenticated, user } = useAuth();
+const ProtectedRoutes: FC<ProtectedRoutesProps> = ({
+  allowedRoles = [],
+  redirectPath = Routes.LOGIN
+}) => {
+  const {isAuthenticated, user} = useAuth();
   const location = useLocation();
 
   if (!isAuthenticated) {
-    return <Navigate to={Routes.LOGIN} state={{ location }} />;
+    return <Navigate to={Routes.LOGIN} state={{from: location}} replace />;
   }
 
-  if (allowedRoles.length && !allowedRoles.some(role => user?.roles.includes(role))) {
-    return <Navigate to={redirectPath} state={{ location }} />;
+  const hasRoleAccess =
+      allowedRoles.length === 0 ||
+      allowedRoles.some((role) => user?.roles.includes(role));
+
+  if (!hasRoleAccess) {
+    return <Navigate to={redirectPath} state={{from: location}} replace />;
   }
 
-  return <Outlet />;
+  return <Outlet/>;
 }
 
 export default ProtectedRoutes;
