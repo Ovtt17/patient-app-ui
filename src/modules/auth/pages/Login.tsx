@@ -7,8 +7,6 @@ import LoginHeader from '../components/login/LoginHeader/LoginHeader';
 import LoginForm from '../components/login/LoginForm/LoginForm';
 import SocialLoginButtons from '../components/oauth/SocialLoginButtons';
 import { cn } from '@/lib/utils';
-import { NavLink } from 'react-router-dom';
-import { Routes } from '@/shared/constants/routes';
 
 const Login: FC = () => {
   const { handleLogin, error } = useLogin();
@@ -62,15 +60,6 @@ const Login: FC = () => {
 
             {/* Botones sociales */}
             <SocialLoginButtons />
-
-            {/* Botón de crear nueva cuenta */}
-            <div className="flex justify-center mt-1">
-              <NavLink
-                to={Routes.SIGNUP}
-                className="text-xs text-blue-600 dark:text-blue-400 hover:underline"
-              >
-                ¿No tienes una cuenta? <span className="font-semibold">Crear nueva</span>              </NavLink>
-            </div>
           </section>
         </div>
       </div>
