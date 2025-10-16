@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(null);
     setIsAuthenticated(false);
     await logoutUser();
-    navigate(Routes.LOGIN);
+    navigate(Routes.HOME);
   };
 
   const isUserAdmin: boolean = user ? user.roles.includes(Role.ADMIN) : false;
