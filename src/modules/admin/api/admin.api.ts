@@ -2,8 +2,8 @@ import { handleError } from "@/modules/errors/utils/handle-error";
 import axiosInstance from "@/config/axiosInstance";
 import type { DoctorRequest } from "../types/doctor-request.types";
 import type { SpecialtyReq, SpecialtyRes } from "@/modules/doctors/types/specialty.type";
-import type { DoctorPagedRes } from "../types/admin.page.type";
 import type { PatientPagedRes } from "@/shared/types/patient.page.type";
+import type { DoctorPagedRes } from "../types/doctor.page.type";
 
 
 

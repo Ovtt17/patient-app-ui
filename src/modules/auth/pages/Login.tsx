@@ -7,8 +7,6 @@ import LoginHeader from '../components/login/LoginHeader/LoginHeader';
 import LoginForm from '../components/login/LoginForm/LoginForm';
 import SocialLoginButtons from '../components/oauth/SocialLoginButtons';
 import { cn } from '@/lib/utils';
-import { NavLink } from 'react-router-dom';
-import { Routes } from '@/shared/constants/routes';
 
 const Login: FC = () => {
   const { handleLogin, error } = useLogin();

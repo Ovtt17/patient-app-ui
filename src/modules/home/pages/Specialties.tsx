@@ -1,4 +1,4 @@
-import HeaderHome from "./HeaderHome";
+import HeaderHome from "../HeaderHome";
 
 const Specialties = () => {
   const especialidades = [

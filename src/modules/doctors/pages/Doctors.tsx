@@ -74,7 +74,7 @@ const Btn: React.FC<
     <button
       {...props}
       className={`inline-flex items-center gap-2 rounded-md font-medium shadow-sm transition
-      focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${v} ${s} ${className}`}
+      focus-visible:outline-2 focus-visible:outline-offset-2 ${v} ${s} ${className}`}
     />
   );
 };
