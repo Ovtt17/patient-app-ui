@@ -1,4 +1,3 @@
-import type { Role } from "@/modules/admin/types/role.types";
 import type { Gender } from "@/shared/types/gender.types";
 
 export interface DoctorResponse {
@@ -14,6 +13,5 @@ export interface DoctorResponse {
   userId: string;
   zoneId: string;
   specialties: string[];
-  roles: Role[];
 }
 

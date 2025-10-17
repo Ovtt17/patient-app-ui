@@ -3,7 +3,6 @@ import {
   PhoneIcon,
   UserIcon,
   IdentificationIcon,
-  BriefcaseIcon,
   BuildingOfficeIcon,
 } from "@heroicons/react/24/outline";
 import { cn } from "@/lib/utils";
@@ -25,7 +24,6 @@ export const DoctorCard = ({ doctor }: DoctorCardProps) => {
     medicalLicense,
     officeNumber,
     specialties,
-    roles,
   } = doctor;
 
   return (
@@ -98,21 +96,6 @@ export const DoctorCard = ({ doctor }: DoctorCardProps) => {
           <span className="text-xs text-gray-400 italic">Sin especialidades</span>
         )}
       </div>
-
-      {/* Roles */}
-      {roles?.length ? (
-        <div className="mt-3 flex flex-wrap gap-2">
-          {roles.map((role) => (
-            <span
-              key={role}
-              className="flex items-center gap-1 text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-2 py-1 rounded-md uppercase"
-            >
-              <BriefcaseIcon className="w-3.5 h-3.5 text-gray-400" />
-              {role}
-            </span>
-          ))}
-        </div>
-      ) : null}
     </article>
   );
 };
