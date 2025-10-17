@@ -1,7 +1,7 @@
 export const Role = {
   ADMIN: "ADMIN",
   DOCTOR: "DOCTOR",
-  PACIENTE: "PACIENTE",
+  PATIENT: "PATIENT",
 } as const;
 
 // Export as type

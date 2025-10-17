@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const isUserAdmin: boolean = user ? user.roles.includes(Role.ADMIN) : false;
   const isUserDoctor: boolean = user ? user.roles.includes(Role.DOCTOR) : false;
-  const isUserPatient: boolean = user ? user.roles.includes(Role.PACIENTE) : false;
+  const isUserPatient: boolean = user ? user.roles.includes(Role.PATIENT) : false;
 
   const updateUser = (userUpdated: User) => {
     setUser(prevUser => prevUser && String(prevUser.id) === String(userUpdated.id)
