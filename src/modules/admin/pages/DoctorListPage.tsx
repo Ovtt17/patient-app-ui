@@ -4,11 +4,10 @@ import {
   PhoneIcon,
   UserIcon,
   MagnifyingGlassIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
 } from "@heroicons/react/24/outline";
 import { cn } from "@/lib/utils";
 import { useAllDoctors } from "../hooks/useAllDoctors";
+import { PaginationControls } from "@/shared/components/PaginationControls/PaginationControls";
 
 const DoctorListPage = () => {
   const [search, setSearch] = useState("");
@@ -22,14 +21,6 @@ const DoctorListPage = () => {
     page,
     handlePageChange
   } = useAllDoctors();
-
-  const navigateToPreviousPage = () => {
-    handlePageChange(Math.max(page - 1, 0));
-  };
-
-  const navigateToNextPage = () => {
-    handlePageChange(Math.min(page + 1, totalPages - 1));
-  };
 
   // 🔍 Filtrar localmente (simple)
   const filteredDoctors = doctors?.filter((d) =>
@@ -128,39 +119,11 @@ const DoctorListPage = () => {
 
       {/* Paginación */}
       {filteredDoctors?.length ? (
-        <div className="flex justify-center items-center gap-6 mt-10">
-          <button
-            onClick={navigateToPreviousPage}
-            disabled={page === 1}
-            className={cn(
-              "flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200",
-              page === 1
-                ? "text-gray-400 cursor-not-allowed bg-gray-100 dark:bg-gray-800"
-                : "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-800/40"
-            )}
-          >
-            <ChevronLeftIcon className="w-4 h-4" />
-            Anterior
-          </button>
-
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Página <span className="font-medium">{page}</span> de {totalPages}
-          </p>
-
-          <button
-            onClick={navigateToNextPage}
-            disabled={page + 1 >= totalPages}
-            className={cn(
-              "flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200",
-              page + 1 >= totalPages
-                ? "text-gray-400 cursor-not-allowed bg-gray-100 dark:bg-gray-800"
-                : "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-800/40"
-            )}
-          >
-            Siguiente
-            <ChevronRightIcon className="w-4 h-4" />
-          </button>
-        </div>
+        <PaginationControls
+          currentPage={page}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
       ) : null}
     </section>
   );
