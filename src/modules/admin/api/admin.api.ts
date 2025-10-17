@@ -1,6 +1,6 @@
 import { handleError } from "@/modules/errors/utils/handle-error";
 import axiosInstance from "@/config/axiosInstance";
-import type { DoctorRequest } from "../types/doctor-request.types";
+import type { DoctorRequest } from "../types/DoctorRequest";
 import type { SpecialtyReq, SpecialtyRes } from "@/modules/doctors/types/specialty.type";
 import type { PatientPagedRes } from "@/shared/types/patient.page.type";
 import type { DoctorPagedResponse } from "../types/DoctorPagedResponse";
@@ -25,7 +25,7 @@ export const getAllDoctors = async ({
 
 export const createDoctor = async (request: DoctorRequest): Promise<string> => {
   try {
-    const response = await axiosInstance.post(`/doctors`, request);
+    const response = await axiosInstance.post(`/auth/register-doctor`, request);
     const message: string = response.data;
     return message;
   } catch (error) {

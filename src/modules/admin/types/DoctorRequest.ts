@@ -1,7 +1,7 @@
-import type { Gender } from "@/shared/types/gender.types";
+import type { Gender } from "@/shared/types/Gender";
 
 export type DoctorRequest = {
-  firstName: string; 
+  firstName: string;
   lastName: string;
   email: string;
   phone: string;

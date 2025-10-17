@@ -2,7 +2,7 @@ import axios from "axios";
 import type { ExceptionResponse, ProcessedError } from "../types/exception-response.types";
 
 export const processExceptionResponse = (exception: ExceptionResponse): ProcessedError => ({
-  mainError: exception.businessErrorDescription || exception.error,
+  mainError: exception.error || exception.businessErrorDescription,
   validationErrors: exception.validationErrors ? Array.from(exception.validationErrors) : undefined
 });
 
