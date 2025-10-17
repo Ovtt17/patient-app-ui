@@ -21,7 +21,7 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   }
 
   return (
-    <div className="flex h-screen overflow-hidden bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
+    <div className="flex h-screen overflow-hidden bg-white dark:bg-boxdark-2 text-gray-900 dark:text-gray-100">
       <DefaultToastifyContainer />
 
       {/* Sidebar lateral */}

@@ -1,4 +1,4 @@
-import type { Gender } from "@/shared/types/gender.types";
+import type { Gender } from "@/shared/types/Gender";
 
 export interface DoctorResponse {
   id: string;
