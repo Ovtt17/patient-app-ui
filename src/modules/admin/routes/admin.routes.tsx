@@ -3,15 +3,15 @@ import { lazy, Suspense } from "react";
 import Loader from "@/shared/components/Loader/Loader";
 import { RoutesAdmin } from "@/modules/admin/routes/RoutesAdmin.ts";
 
-const CreateDoctorPage = lazy(() => import("../pages/CreateDoctorPage"));
-const DoctorsPage = lazy(() => import("../pages/DoctorListPage"));
+const DoctorCreate = lazy(() => import("../pages/DoctorCreate"));
+const DoctorListPage = lazy(() => import("../pages/DoctorListPage"));
 
 const adminRoutes: RouteObject[] = [
   {
     path: RoutesAdmin.ADMIN_DOCTORES_CREATE,
     element: (
         <Suspense fallback={<Loader />}>
-          <CreateDoctorPage />
+        <DoctorCreate />
         </Suspense>
     ),
   },
@@ -19,7 +19,7 @@ const adminRoutes: RouteObject[] = [
     path: RoutesAdmin.ADMIN_DOCTORS,
     element: (
         <Suspense fallback={<Loader />}>
-          <DoctorsPage />
+        <DoctorListPage />
         </Suspense>
     ),
   }
