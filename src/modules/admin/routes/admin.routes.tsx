@@ -4,7 +4,7 @@ import Loader from "@/shared/components/Loader/Loader";
 import { RoutesAdmin } from "@/modules/admin/routes/RoutesAdmin.ts";
 
 const CreateDoctorPage = lazy(() => import("../pages/CreateDoctorPage"));
-const DoctorsPage = lazy(() => import("../pages/DoctorsPage"));
+const DoctorsPage = lazy(() => import("../pages/DoctorListPage"));
 
 const adminRoutes: RouteObject[] = [
   {
