@@ -40,10 +40,14 @@ const DoctorListPage = () => {
   return (
     <section className="p-6 mx-auto">
       <DoctorHeader
-        totalElements={totalElements}
         search={search}
         onSearchChange={setSearch}
       />
+      <div className="pb-2">
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          {totalElements ?? 0} profesionales registrados
+        </p>
+      </div>
       <DoctorGrid doctors={filteredDoctors ?? []} />
       {filteredDoctors?.length ? (
         <PaginationControls
