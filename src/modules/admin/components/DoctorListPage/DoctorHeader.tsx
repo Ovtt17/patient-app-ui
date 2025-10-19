@@ -12,7 +12,7 @@ export const DoctorHeader = ({
 }: DoctorHeaderProps) => {
   return (
     <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-      <PageHeader title="Crear nuevo doctor" />
+      <PageHeader title="Doctores" />
 
       <div className="relative w-full md:w-72">
         <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
