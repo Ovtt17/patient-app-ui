@@ -2,7 +2,6 @@ import { handleError } from "@/modules/errors/utils/handle-error";
 import axiosInstance from "@/config/axiosInstance";
 import type { DoctorRequest } from "../types/DoctorRequest";
 import type { SpecialtyReq, SpecialtyRes } from "@/modules/doctors/types/specialty.type";
-import type { PatientPagedRes } from "@/shared/types/patient.page.type";
 import type { DoctorPagedResponse } from "../types/DoctorPagedResponse";
 import type { PaginationParams } from "@/shared/types/PaginationParams";
 
@@ -22,7 +21,6 @@ export const getAllDoctors = async ({
   }
 };
 
-
 export const createDoctor = async (request: DoctorRequest): Promise<string> => {
   try {
     const response = await axiosInstance.post(`/auth/register-doctor`, request);
@@ -32,22 +30,6 @@ export const createDoctor = async (request: DoctorRequest): Promise<string> => {
     throw handleError(error);
   }
 }
-
-export const getAllActivePatients = async (
-  page: number = 0,
-  size: number = 20,
-  sortBy: string = "createdDate",
-  sortOrder: "ASC" | "DESC" = "DESC"
-): Promise<PatientPagedRes> => {
-  try {
-    const response = await axiosInstance.get<PatientPagedRes>("/patients", {
-      params: { page, size, sortBy, sortOrder },
-    });
-    return response.data;
-  } catch (error) {
-    throw handleError(error);
-  }
-};
 
 export const deactivatePatient = async (id: string): Promise<string> => {
   try {

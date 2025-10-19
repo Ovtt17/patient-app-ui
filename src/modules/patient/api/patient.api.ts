@@ -1,8 +1,34 @@
 import { handleError } from "@/modules/errors/utils/handle-error";
 import axiosInstance from "@/config/axiosInstance";
 import type { AppointmentReq, AppointmentRes } from "@/shared/types/appointment.type";
+import type { PatientPagedResponse } from "../types/PatientPagedResponse";
+import type { PaginationParams } from "@/shared/types/PaginationParams";
+import type { PatientResponse } from "../types/PatientResponse";
 
+export const getPatientById = async (id: string): Promise<PatientResponse> => {
+  try {
+    const response = await axiosInstance.get(`/patients/${id}`);
+    return response.data;
+  } catch (error) {
+    throw handleError(error);
+  }
+};
 
+export const getAllActivePatients = async ({
+  page = 0,
+  size = 20,
+  sortBy = "createdDate",
+  sortOrder = "desc",
+}: PaginationParams): Promise<PatientPagedResponse> => {
+  try {
+    const response = await axiosInstance.get<PatientPagedResponse>("/patients", {
+      params: { page, size, sortBy, sortOrder },
+    });
+    return response.data;
+  } catch (error) {
+    throw handleError(error);
+  }
+};
 
 export const createAppointment = async ( request : AppointmentReq) : Promise<AppointmentRes> => {
   try {

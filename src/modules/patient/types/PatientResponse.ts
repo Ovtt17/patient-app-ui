@@ -1,7 +1,7 @@
-import type { Role } from "@/modules/admin/types/role.types";
+import type { Role } from "@/modules/auth/types/role.types";
 import type { Gender } from "@/shared/types/Gender";
 
-export interface Patient {
+export interface PatientResponse {
   id: string;
   firstName: string;
   lastName: string;

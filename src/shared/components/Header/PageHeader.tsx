@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 import { PageBreadcrumb } from '../PageBreadcrumb/PageBreadcrumb';
 
 interface PageHeaderProps {

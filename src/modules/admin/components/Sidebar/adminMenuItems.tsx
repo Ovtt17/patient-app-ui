@@ -11,7 +11,7 @@ import type { SidebarMenuItem } from "@/shared/types/sidebar-menu-item.ts";
 import { RoutesAdmin } from "@/modules/admin/routes/RoutesAdmin.ts";
 
 const adminMenuItems: SidebarMenuItem[] = [
-  { 
+  {
     title: "Gestión de Doctores",
     icon: <UserIcon />,
     subItems: [
@@ -22,7 +22,7 @@ const adminMenuItems: SidebarMenuItem[] = [
       },
       {
         title: "Registrar Doctor",
-        href: RoutesAdmin.ADMIN_DOCTORES_CREATE,
+        href: RoutesAdmin.ADMIN_DOCTORS_CREATE,
         icon: <UserPlusIcon />,
       },
     ],
@@ -31,32 +31,39 @@ const adminMenuItems: SidebarMenuItem[] = [
     title: "Gestión de Pacientes",
     icon: <UserGroupIcon />,
     subItems: [
-      { title: "Pacientes Activos", 
+      {
+        title: "Pacientes Activos",
         href: RoutesAdmin.ADMIN_PATIENTS,
         icon: <ClipboardDocumentListIcon />
       },
-
-      { title: "Desactivar Paciente", 
-        href: RoutesAdmin.ADMIN_DESACTIVATE_PATIENT,
-        icon: <UserPlusIcon />},
+      {
+        title: "Registrar Paciente",
+        href: RoutesAdmin.ADMIN_PATIENTS_CREATE,
+        icon: <UserPlusIcon />
+      }
     ],
   },
   {
     title: "Especialidades Médicas",
     icon: <BeakerIcon />,
     subItems: [
-      { title: "Listado de Especialidades", 
+      {
+        title: "Listado de Especialidades",
         href: RoutesAdmin.ADMIN_SPECIALTIES,
         icon: <ClipboardDocumentListIcon />
       },
 
-      { title: "Crear Especialidad", 
+      {
+        title: "Crear Especialidad",
         href: RoutesAdmin.ADMIN_SPECIALTIES_CREATE,
-        icon: <DocumentPlusIcon />},
+        icon: <DocumentPlusIcon />
+      },
 
-      { title: "Actualizar Especialidad", 
+      {
+        title: "Actualizar Especialidad",
         href: RoutesAdmin.ADMIN_SPECIALTIES_EDIT,
-        icon: <PencilSquareIcon />},
+        icon: <PencilSquareIcon />
+      },
     ],
   },
 ];
