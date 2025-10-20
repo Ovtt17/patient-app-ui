@@ -3,8 +3,8 @@ import { lazy, Suspense } from "react";
 import Loader from "@/shared/components/Loader/Loader";
 import { RoutesAdmin } from "@/modules/admin/routes/RoutesAdmin.ts";
 
-const DoctorCreate = lazy(() => import("../pages/DoctorCreate"));
-const DoctorListPage = lazy(() => import("../pages/DoctorListPage"));
+const DoctorCreate = lazy(() => import("@/modules/doctors/pages/DoctorCreate"));
+const DoctorListPage = lazy(() => import("@/modules/doctors/pages/DoctorListPage"));
 const Patient = lazy(() => import("@/modules/patient/pages/Patient"));
 const PatientCreate = lazy(() => import("@/modules/patient/pages/PatientCreate"));
 

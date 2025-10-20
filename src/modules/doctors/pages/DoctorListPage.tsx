@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useAllDoctors } from "../hooks/useAllDoctors";
+import { useAllDoctors } from "../../admin/hooks/useAllDoctors";
 import { PaginationControls } from "@/shared/components/PaginationControls/PaginationControls";
-import { DoctorHeader } from "../components/DoctorListPage/DoctorHeader";
-import { DoctorGrid } from "../components/DoctorListPage/DoctorGrid";
+import { DoctorHeader } from "../../admin/components/DoctorListPage/DoctorHeader";
+import { DoctorGrid } from "../../admin/components/DoctorListPage/DoctorGrid";
 
 const DoctorListPage = () => {
   const [search, setSearch] = useState("");
