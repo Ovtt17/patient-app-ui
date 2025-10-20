@@ -5,7 +5,6 @@ import {
   UserPlusIcon,
   BeakerIcon,
   DocumentPlusIcon,
-  PencilSquareIcon,
 } from "@heroicons/react/24/outline";
 import type { SidebarMenuItem } from "@/shared/types/sidebar-menu-item.ts";
 import { RoutesAdmin } from "@/modules/admin/routes/RoutesAdmin.ts";
@@ -57,12 +56,6 @@ const adminMenuItems: SidebarMenuItem[] = [
         title: "Crear Especialidad",
         href: RoutesAdmin.ADMIN_SPECIALTIES_CREATE,
         icon: <DocumentPlusIcon />
-      },
-
-      {
-        title: "Actualizar Especialidad",
-        href: RoutesAdmin.ADMIN_SPECIALTIES_EDIT,
-        icon: <PencilSquareIcon />
       },
     ],
   },
