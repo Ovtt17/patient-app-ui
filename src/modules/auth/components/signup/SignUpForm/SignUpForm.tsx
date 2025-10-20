@@ -1,150 +1,84 @@
 import { type FC } from "react";
 import { useFormContext } from "react-hook-form";
-import { Eye, EyeOff } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import ErrorDisplay from "@/modules/errors/components/ErrorDisplay";
-import type { ProcessedError } from "@/modules/errors/types/exception-response.types";
 import type { RegisterRequest } from "@/modules/auth/types/register-request.types";
-
+import GenderSelect from "@/shared/components/Select/GenderSelect";
+import {
+  UserIcon,
+  EnvelopeIcon,
+  PhoneIcon,
+} from "@heroicons/react/24/outline";
+import { cn } from "@/lib/utils";
+import Spinner from "@/shared/components/Loader/Spinner";
+import PhoneInputField from "@/shared/components/Input/PhoneInputField";
+import InputField from "@/shared/components/Input/InputField";
 interface SignUpFormProps {
   onSubmit: (data: RegisterRequest) => void;
-  isSubmitting: boolean;
-  serverError: ProcessedError | null;
-  showPassword: boolean;
-  setShowPassword: (v: boolean) => void;
-  showConfirmPassword: boolean;
-  setShowConfirmPassword: (v: boolean) => void;
 }
 
 const SignUpForm: FC<SignUpFormProps> = ({
   onSubmit,
-  isSubmitting,
-  serverError,
-  showPassword,
-  setShowPassword,
-  showConfirmPassword,
-  setShowConfirmPassword,
 }) => {
   const {
-    register,
     handleSubmit,
-    formState: { errors },
+    formState: { isSubmitting }
   } = useFormContext<RegisterRequest>();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      {/* First Name */}
-      <div className="flex flex-col gap-1">
-        <Label htmlFor="firstName">Nombre</Label>
-        <Input
-          id="firstName"
-          placeholder="Juan"
-          {...register("firstName")}
-        />
-        {errors.firstName && <p className="text-sm text-red-500">{errors.firstName.message}</p>}
-      </div>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="w-full max-w-4xl mx-auto flex flex-col gap-6 px-4 sm:px-6 md:px-8"
+    >
+      {/* Nombre */}
+      <InputField
+        id="firstName"
+        label="Nombres"
+        placeholder="Miguel Ángel"
+        type="text"
+        icon={<UserIcon className="w-5 h-5 text-gray-400" />}
+      />
 
-      {/* Last Name */}
-      <div className="flex flex-col gap-1">
-        <Label htmlFor="lastName">Apellido</Label>
-        <Input
-          id="lastName"
-          placeholder="Pérez"
-          {...register("lastName")}
-        />
-        {errors.lastName && <p className="text-sm text-red-500">{errors.lastName.message}</p>}
-      </div>
+      {/* Apellido */}
+      <InputField
+        id="lastName"
+        label="Apellidos"
+        placeholder="Hernández López"
+        type="text"
+        icon={<UserIcon className="w-5 h-5 text-gray-400" />}
+      />
 
-      {/* Username */}
-      <div className="flex flex-col gap-1">
-        <Label htmlFor="username">Usuario</Label>
-        <Input
-          id="username"
-          placeholder="usuario123"
-          {...register("username")}
-        />
-        {errors.username && <p className="text-sm text-red-500">{errors.username.message}</p>}
-      </div>
+      {/* Correo */}
+      <InputField
+        id="email"
+        label="Correo electrónico"
+        placeholder="doctor@ejemplo.com"
+        type="email"
+        icon={<EnvelopeIcon className="w-5 h-5 text-gray-400" />}
+      />
 
-      {/* Email */}
-      <div className="flex flex-col gap-1">
-        <Label htmlFor="email">Email</Label>
-        <Input
-          id="email"
-          type="email"
-          placeholder="correo@ejemplo.com"
-          {...register("email")}
-        />
-        {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
-      </div>
+      {/* Teléfono */}
+      <PhoneInputField
+        id="phone"
+        label="Teléfono"
+        placeholder="86115066"
+        icon={<PhoneIcon className="w-5 h-5 text-gray-400" />}
+      />
 
-      {/* Phone */}
-      <div className="flex flex-col gap-1">
-        <Label htmlFor="phone">Teléfono</Label>
-        <Input
-          id="phone"
-          type="tel"
-          placeholder="1234-5678"
-          {...register("phone")}
-          maxLength={8}
-        />
-        {errors.phone && <p className="text-sm text-red-500">{errors.phone.message}</p>}
-      </div>
-
-
-      {/* Password */}
-      <div className="flex flex-col gap-1">
-        <Label htmlFor="password">Contraseña</Label>
-        <div className="relative">
-          <Input
-            id="password"
-            type={showPassword ? "text" : "password"}
-            placeholder="********"
-            {...register("password")}
-          />
-          <button
-            type="button"
-            className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:hover:text-white"
-            onClick={() => setShowPassword(!showPassword)}
-            aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
-          >
-            {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-          </button>
-        </div>
-        {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
-      </div>
-
-      {/* Confirm Password */}
-      <div className="flex flex-col gap-1">
-        <Label htmlFor="confirmPassword">Confirmar contraseña</Label>
-        <div className="relative">
-          <Input
-            id="confirmPassword"
-            type={showConfirmPassword ? "text" : "password"}
-            placeholder="********"
-            {...register("confirmPassword")}
-          />
-          <button
-            type="button"
-            className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:hover:text-white"
-            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            aria-label={showConfirmPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
-          >
-            {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-          </button>
-        </div>
-        {errors.confirmPassword && (
-          <p className="text-sm text-red-500">{errors.confirmPassword.message}</p>
-        )}
-        <ErrorDisplay errors={serverError} />
-      </div>
+      {/* Género */}
+      <GenderSelect fieldName="gender" />
 
       {/* Submit */}
-      <Button type="submit" disabled={isSubmitting} className="mt-2 w-full">
-        {isSubmitting ? "Registrando..." : "Crear cuenta"}
-      </Button>
+      <div className="flex justify-end">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className={cn(
+            "flex justify-center items-center bg-gradient-to-br from-primary to-secondary hover:to-secondary-hover text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-all duration-200 ease-in-out",
+            isSubmitting && "opacity-50 cursor-not-allowed"
+          )}
+        >
+          {isSubmitting ? <Spinner /> : "Crear cuenta"}
+        </button>
+      </div>
     </form>
   );
 };

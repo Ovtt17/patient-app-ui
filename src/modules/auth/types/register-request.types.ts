@@ -1,9 +1,11 @@
+import type { Gender } from "@/shared/types/Gender";
+import type { Role } from "./role.types";
+
 export type RegisterRequest = {
   firstName: string;
   lastName: string;
-  username: string;
   email: string;
-  password: string;
-  confirmPassword: string;
   phone: string;
+  gender: Gender;
+  role: Role;
 };
