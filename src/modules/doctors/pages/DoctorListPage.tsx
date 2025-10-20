@@ -3,6 +3,7 @@ import { useAllDoctors } from "../hooks/useAllDoctors";
 import { PaginationControls } from "@/shared/components/PaginationControls/PaginationControls";
 import { DoctorHeader } from "../components/DoctorListPage/DoctorHeader";
 import { DoctorGrid } from "../components/DoctorListPage/DoctorGrid";
+import ErrorDisplay from "@/modules/errors/components/ErrorDisplay";
 
 const DoctorListPage = () => {
   const [search, setSearch] = useState("");
@@ -30,19 +31,13 @@ const DoctorListPage = () => {
       </div>
     );
 
-  if (error)
-    return (
-      <div className="flex justify-center items-center h-72 text-red-500">
-        <p>Ocurrió un error al cargar los doctores. Intenta nuevamente.</p>
-      </div>
-    );
-
   return (
     <section className="p-6 mx-auto">
       <DoctorHeader
         search={search}
         onSearchChange={setSearch}
       />
+      {error && <ErrorDisplay errors={error} />}
       <div className="pb-2">
         <p className="text-sm text-gray-500 dark:text-gray-400">
           {totalElements ?? 0} profesionales registrados
