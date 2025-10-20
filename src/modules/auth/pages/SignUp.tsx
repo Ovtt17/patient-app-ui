@@ -17,7 +17,7 @@ const SignUp: FC<SignUpProps> = ({ role }) => {
 
   return (
     <article className={cn("p-6 flex flex-col gap-3", isSubmitting && "opacity-60 pointer-events-none")}>
-      <PageHeader title={`Crear cuenta de ${capitalize(role)}`} />
+      <PageHeader title={`Crear ${capitalize(role)}`} />
 
       {/* Formulario */}
       <FormProvider {...form}>

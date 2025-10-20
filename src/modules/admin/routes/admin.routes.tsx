@@ -6,6 +6,7 @@ import { RoutesAdmin } from "@/modules/admin/routes/RoutesAdmin.ts";
 const DoctorCreate = lazy(() => import("../pages/DoctorCreate"));
 const DoctorListPage = lazy(() => import("../pages/DoctorListPage"));
 const Patient = lazy(() => import("@/modules/patient/pages/Patient"));
+const PatientCreate = lazy(() => import("@/modules/patient/pages/PatientCreate"));
 
 const adminRoutes: RouteObject[] = [
   {
@@ -29,6 +30,14 @@ const adminRoutes: RouteObject[] = [
     element: (
       <Suspense fallback={<Loader />}>
         <Patient />
+      </Suspense>
+    )
+  },
+  {
+    path: RoutesAdmin.ADMIN_PATIENTS_CREATE,
+    element: (
+      <Suspense fallback={<Loader />}>
+        <PatientCreate />
       </Suspense>
     )
   }

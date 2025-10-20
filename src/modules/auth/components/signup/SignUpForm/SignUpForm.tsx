@@ -31,7 +31,7 @@ const SignUpForm: FC<SignUpFormProps> = ({
       {/* Nombre */}
       <InputField
         id="firstName"
-        label="Nombres del doctor"
+        label="Nombres"
         placeholder="Miguel Ángel"
         type="text"
         icon={<UserIcon className="w-5 h-5 text-gray-400" />}
@@ -40,7 +40,7 @@ const SignUpForm: FC<SignUpFormProps> = ({
       {/* Apellido */}
       <InputField
         id="lastName"
-        label="Apellidos del doctor"
+        label="Apellidos"
         placeholder="Hernández López"
         type="text"
         icon={<UserIcon className="w-5 h-5 text-gray-400" />}
@@ -76,7 +76,7 @@ const SignUpForm: FC<SignUpFormProps> = ({
             isSubmitting && "opacity-50 cursor-not-allowed"
           )}
         >
-          {isSubmitting ? <Spinner /> : "Crear Doctor"}
+          {isSubmitting ? <Spinner /> : "Crear cuenta"}
         </button>
       </div>
     </form>
