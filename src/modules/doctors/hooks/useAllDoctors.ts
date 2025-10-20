@@ -3,9 +3,9 @@ import { useSearchParams } from "react-router-dom";
 import { usePagination } from "@/shared/hooks/usePagination";
 import { initializePaginationParams } from "@/shared/utils/urlParamsUtils";
 import { usePaginatedEntities } from "@/shared/hooks/usePaginatedEntities";
-import { getAllDoctors } from "../api/admin.api";
 import type { DoctorResponse } from "@/modules/doctors/types/DoctorResponse";
 import type { SortOrder } from "@/shared/types/SortOrder";
+import { getAllDoctors } from "../api/doctor.api";
 
 
 export const useAllDoctors = () => {

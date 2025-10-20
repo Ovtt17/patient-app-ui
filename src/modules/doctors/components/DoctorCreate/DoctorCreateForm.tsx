@@ -5,7 +5,7 @@ import {
   EnvelopeIcon,
   PhoneIcon,
 } from "@heroicons/react/24/outline";
-import type { DoctorRequest } from "@/modules/admin/types/DoctorRequest";
+import type { DoctorRequest } from "@/modules/doctors/types/DoctorRequest";
 import InputField from "@/shared/components/Input/InputField";
 import PhoneInputField from "@/shared/components/Input/PhoneInputField";
 import GenderSelect from "@/shared/components/Select/GenderSelect";

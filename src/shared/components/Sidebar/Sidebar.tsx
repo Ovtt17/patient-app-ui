@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { ArrowLeftIcon } from '@heroicons/react/24/solid';
 import { useAuth } from '@/shared/context/auth/useAuth';
-import adminMenuItems from '@/modules/admin/components/Sidebar/adminMenuItems';
+import adminMenuItems from '@/shared/constants/adminMenuItems';
 import MenuGroup from './MenuGroup';
 
 interface SidebarProps {
