@@ -1,10 +1,11 @@
 import type { RouteObject } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loader from "@/shared/components/Loader/Loader";
-import Specialty from "@/modules/doctors/pages/Specialty";
 import { RoutesDoctor } from './RoutesDoctor';
-import DoctorScheduleAvailabilityPage from "../pages/DoctorScheduleAvailabilityPage";
 
+const Specialty = lazy(() => import("@/modules/doctors/pages/Specialty"));
+const DoctorScheduleAvailabilityPage = lazy(() => import("../pages/DoctorScheduleAvailabilityPage"));
+const ScheduleCreate = lazy(() => import("../pages/ScheduleCreate"));
 const Patient = lazy(() => import("@/modules/patient/pages/Patient"));
 const PatientCreate = lazy(() => import("@/modules/patient/pages/PatientCreate"));
 const Schedule = lazy(() => import("@/modules/doctors/pages/Schedule"));
@@ -49,6 +50,14 @@ const doctorRoutes: RouteObject[] = [
         <DoctorScheduleAvailabilityPage />
       </Suspense>
     ),
+	},
+	{
+		path: RoutesDoctor.DOCTOR_SCHEDULES_CREATE,
+		element: (
+			<Suspense fallback={<Loader />}>
+				<ScheduleCreate />
+			</Suspense>
+		),
 	},
 ];
 
