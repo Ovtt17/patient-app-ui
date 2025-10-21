@@ -9,6 +9,7 @@ import publicRoutes from "@/router/public.routes.tsx";
 import { Role } from "@/modules/auth/types/role.types.ts";
 import adminRoutes from "@/modules/admin/routes/admin.routes.tsx";
 import doctorRoutes from "@/modules/doctors/routes/doctor.routes";
+import OAuthSuccess from "@/modules/auth/components/oauth/OAuthSuccess";
 
 const AppRoutes = () => {
   const { loading } = useAuth();
@@ -19,6 +20,8 @@ const AppRoutes = () => {
 
   return (
     <Routes>
+      <Route path="/oauth-success" element={<OAuthSuccess />} />
+
       {/* Rutas públicas */}
       {publicRoutes.map((route) => (
         <Route key={route.path} path={route.path} element={route.element} />

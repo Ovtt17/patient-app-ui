@@ -6,15 +6,8 @@ export const Routes = {
   SPECIALTIES: "/especialidades",
   DIAGNOSTIC_CENTERS: "/centros-diagnosticos",
   HOSPITAL_SERVICES: "/servicios",
-
-} as const;
-
-export const RoutesDoctor = {
   
-} as const;
-
-export const RoutesPatient = {
-  BOOK_APPOINTMENT: "/book-appointment",
-  MY_APPOINTMENTS: "/my-appointments",
-  APPOINTMENT_DETAILS: "/appointment-details/:id",
+  APPOINTMENTS: 'citas',
+  APPOINTMENTS_CREATE: 'citas/crear',
+  APPOINTMENTS_UPCOMING: 'citas/proximas',
 } as const;

@@ -1,9 +1,11 @@
-import type { RouteObject } from "react-router-dom";
+import { Navigate, type RouteObject } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loader from "@/shared/components/Loader/Loader";
 import { RoutesAdmin } from "@/modules/admin/routes/RoutesAdmin.ts";
 import Specialty from "@/modules/doctors/pages/Specialty";
 import SpecialtyCreate from "@/modules/doctors/pages/SpecialtyCreate";
+import { ReportsAdmin } from "@/modules/reports/pages/ReportsAdmin";
+import { AdminDashboard } from "../pages/Dashboard";
 
 const DoctorCreate = lazy(() => import("@/modules/doctors/pages/DoctorCreate"));
 const DoctorListPage = lazy(() => import("@/modules/doctors/pages/DoctorListPage"));
@@ -11,6 +13,18 @@ const Patient = lazy(() => import("@/modules/patient/pages/Patient"));
 const PatientCreate = lazy(() => import("@/modules/patient/pages/PatientCreate"));
 
 const adminRoutes: RouteObject[] = [
+  {
+    path: "/",
+    element: <Navigate to={RoutesAdmin.ADMIN_DASHBOARD} replace />,
+  },
+  {
+    path: RoutesAdmin.ADMIN_DASHBOARD,
+    element: <AdminDashboard />,
+  },
+  {
+    path: '/admin',
+    element: <AdminDashboard />,
+  },
   {
     path: RoutesAdmin.ADMIN_DOCTORS,
     element: (
@@ -57,6 +71,12 @@ const adminRoutes: RouteObject[] = [
       <Suspense fallback={<Loader />}>
         <SpecialtyCreate />
       </Suspense>
+    )
+  },
+  {
+    path: RoutesAdmin.ADMIN_REPORTS,
+    element: (
+      <ReportsAdmin />
     )
   }
 ];

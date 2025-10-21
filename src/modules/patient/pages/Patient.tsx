@@ -1,11 +1,15 @@
+import { useState } from "react";
+import { Squares2X2Icon, TableCellsIcon } from "@heroicons/react/24/outline";
 import { useAllPatients } from "@/modules/patient/hooks/useAllPatients";
 import PageHeader from "@/shared/components/Header/PageHeader";
 import PatientGrid from "../components/PatientGrid/PatientGrid";
 import { PaginationControls } from "@/shared/components/PaginationControls/PaginationControls";
+import PatientTable from "../components/PatientTable/PatientTable";
+import { mockPatients } from "../mocks/mockPatients";
 
 const Patient = () => {
   const {
-    patients,
+    // patients,
     totalPages,
     totalElements,
     loading,
@@ -13,6 +17,8 @@ const Patient = () => {
     page,
     handlePageChange,
   } = useAllPatients();
+
+  const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
 
   if (loading)
     return (
@@ -31,25 +37,55 @@ const Patient = () => {
     );
 
   return (
-    <section className="p-6 mx-auto">
+    <section className="p-6 mx-auto max-w-7xl">
       <PageHeader title="Pacientes" />
 
-      <div className="pb-2">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
         <p className="text-sm text-gray-500 dark:text-gray-400">
           {totalElements ?? 0} pacientes registrados
         </p>
+
+        {/* Toggle Grid / Table */}
+        <div className="flex gap-2">
+          <button
+            onClick={() => setViewMode("grid")}
+            className={`px-3 py-1 rounded-md border ${viewMode === "grid"
+              ? "bg-blue-500 text-white border-blue-500"
+              : "bg-white text-gray-700 border-gray-300"
+              } transition-colors flex items-center justify-center`}
+            aria-label="Vista de cuadrícula"
+          >
+            <Squares2X2Icon className="h-5 w-5" />
+          </button>
+          <button
+            onClick={() => setViewMode("table")}
+            className={`px-3 py-1 rounded-md border ${viewMode === "table"
+              ? "bg-blue-500 text-white border-blue-500"
+              : "bg-white text-gray-700 border-gray-300"
+              } transition-colors flex items-center justify-center`}
+            aria-label="Vista de tabla"
+          >
+            <TableCellsIcon className="h-5 w-5" />
+          </button>
+        </div>
       </div>
-      <PatientGrid patients={patients} />
-      {patients?.length ? (
+
+      {/* Contenido */}
+      {viewMode === "grid" ? (
+        <PatientGrid patients={mockPatients} />
+      ) : (
+        <PatientTable patients={mockPatients} />
+      )}
+
+      {mockPatients?.length ? (
         <PaginationControls
           currentPage={page}
           totalPages={totalPages}
           onPageChange={handlePageChange}
         />
       ) : null}
-
     </section>
   );
-}
+};
 
 export default Patient;
