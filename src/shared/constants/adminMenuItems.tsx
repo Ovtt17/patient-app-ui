@@ -11,6 +11,11 @@ import { RoutesAdmin } from "@/modules/admin/routes/RoutesAdmin.ts";
 
 const adminMenuItems: SidebarMenuItem[] = [
   {
+    title: "Dashboard",
+    icon: <ClipboardDocumentListIcon />,
+    href: RoutesAdmin.ADMIN_DASHBOARD,
+  },
+  {
     title: "Gestión de Doctores",
     icon: <UserIcon />,
     subItems: [
@@ -59,6 +64,17 @@ const adminMenuItems: SidebarMenuItem[] = [
       },
     ],
   },
+  {
+    title: "Reportes",
+    icon: <ClipboardDocumentListIcon />,
+    subItems: [
+      {
+        title: "Generar Reportes",
+        href: RoutesAdmin.ADMIN_REPORTS,
+        icon: <DocumentPlusIcon />
+      }
+    ],
+  }
 ];
 
 export default adminMenuItems;

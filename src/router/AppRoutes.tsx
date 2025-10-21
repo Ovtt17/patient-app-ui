@@ -13,9 +13,9 @@ import doctorRoutes from "@/modules/doctors/routes/doctor.routes";
 const AppRoutes = () => {
   const { loading } = useAuth();
 
-  if (loading) {
-    return <Loader />;
-  }
+  // if (loading) {
+  //   return <Loader />;
+  // }
 
   return (
     <Routes>

@@ -12,7 +12,7 @@ const Specialty = () => {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center h-72">
+      <div className="flex mx-auto max-w-7xl justify-center items-center h-72">
         <p className="text-gray-600 dark:text-gray-300 animate-pulse text-lg font-medium">
           Cargando especialidades...
         </p>

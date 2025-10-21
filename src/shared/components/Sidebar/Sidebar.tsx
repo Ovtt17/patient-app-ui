@@ -4,6 +4,8 @@ import { ArrowLeftIcon } from '@heroicons/react/24/solid';
 import { useAuth } from '@/shared/context/auth/useAuth';
 import adminMenuItems from '@/shared/constants/adminMenuItems';
 import MenuGroup from './MenuGroup';
+import doctorMenuItems from '@/shared/constants/doctorMenuItems';
+import sharedMenuItems from '@/shared/constants/sharedMenuItems';
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -13,7 +15,7 @@ interface SidebarProps {
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const location = useLocation();
   const { pathname } = location;
-  const { isUserAdmin } = useAuth();
+  const { isUserAdmin, isUserDoctor } = useAuth();
 
   const trigger = useRef<HTMLButtonElement>(null);
   const sidebar = useRef<HTMLDivElement>(null);
@@ -52,7 +54,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     >
       <div className="relative flex items-center justify-center p-4">
         <NavLink to="/" target='_blank'>
-          <img className="w-60 h-20 object-contain" src="/logo.png" alt="Logo" />
+          <img className="w-60 h-20 object-contain" src="/LogoD.png" alt="Logo" />
         </NavLink>
 
         <button
@@ -76,6 +78,22 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               setSidebarOpen={setSidebarOpen}
             />
           )}
+
+          {isUserDoctor && (
+            <MenuGroup
+              title="DOCTOR"
+              items={doctorMenuItems}
+              pathname={pathname}
+              setSidebarOpen={setSidebarOpen}
+            />
+          )}
+
+          <MenuGroup
+            title='PRINCIPAL'
+            items={sharedMenuItems}
+            pathname={pathname}
+            setSidebarOpen={setSidebarOpen}
+          />
         </nav>
       </div>
     </aside>
