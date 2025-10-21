@@ -18,23 +18,39 @@ const Schedule = () => {
     );
 
   return (
-    <section className="p-6 flex flex-col gap-4">
+    <section className="p-6 flex flex-col gap-5 bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
       <PageHeader title="Horarios" />
 
-      <select
-        value={dayOfWeek || ""}
-        onChange={(e) => setDayOfWeek(e.target.value || undefined)}
-        className="w-fit border rounded-lg px-3 py-2 text-sm text-gray-700 dark:text-gray-200"
-      >
-        <option value="">Todos los días</option>
-        <option value="MONDAY">Lunes</option>
-        <option value="TUESDAY">Martes</option>
-        <option value="WEDNESDAY">Miércoles</option>
-        <option value="THURSDAY">Jueves</option>
-        <option value="FRIDAY">Viernes</option>
-        <option value="SATURDAY">Sábado</option>
-        <option value="SUNDAY">Domingo</option>
-      </select>
+      <div className="flex items-center gap-3">
+        <label
+          htmlFor="dayOfWeek"
+          className="text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
+          Filtrar por día:
+        </label>
+        <select
+          id="dayOfWeek"
+          value={dayOfWeek || ""}
+          onChange={(e) => setDayOfWeek(e.target.value || undefined)}
+          className="
+            w-fit rounded-lg border border-gray-300 dark:border-gray-700
+            bg-white dark:bg-gray-800
+            px-3 py-2 text-sm font-medium
+            text-gray-800 dark:text-gray-100
+            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+            transition-colors
+          "
+        >
+          <option value="">Todos los días</option>
+          <option value="MONDAY">Lunes</option>
+          <option value="TUESDAY">Martes</option>
+          <option value="WEDNESDAY">Miércoles</option>
+          <option value="THURSDAY">Jueves</option>
+          <option value="FRIDAY">Viernes</option>
+          <option value="SATURDAY">Sábado</option>
+          <option value="SUNDAY">Domingo</option>
+        </select>
+      </div>
 
       {errors && <ErrorDisplay errors={errors} />}
       <ScheduleGrid schedules={schedules || []} />

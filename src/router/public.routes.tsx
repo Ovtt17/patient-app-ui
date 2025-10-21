@@ -1,5 +1,4 @@
 import type {RouteObject} from "react-router-dom";
-import OAuthSuccess from "@/modules/auth/components/oauth/OAuthSuccess.tsx";
 import {lazy, Suspense} from "react";
 import PublicRoute from "@/router/PublicRoute.tsx";
 import Loader from "@/shared/components/Loader/Loader.tsx";
@@ -11,14 +10,6 @@ const DiagnosticCenters = lazy(() => import('@/modules/home/pages/Diagnosticcent
 const HospitalServices = lazy(() => import('@/modules/home/pages/HospitalServices'));
 
 const publicRoutes: RouteObject[] = [
-  {
-    path: "/oauth-success",
-    element: (
-        <PublicRoute>
-          <OAuthSuccess />
-        </PublicRoute>
-    )
-  },
   {
     path: Routes.HOME,
     element: (

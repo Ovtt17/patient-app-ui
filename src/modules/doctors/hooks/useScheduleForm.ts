@@ -3,7 +3,7 @@ import type { ScheduleRequest } from "../types/ScheduleRequest";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { scheduleValidationSchema } from "../validations/scheduleValidationSchema";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   createSchedule,
   getScheduleById,
@@ -16,6 +16,7 @@ import { RoutesDoctor } from "../routes/RoutesDoctor";
 
 export const useScheduleForm = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { id: scheduleId } = useParams<{ id: string }>();
   const isEdit = !!scheduleId;
 
@@ -48,6 +49,10 @@ export const useScheduleForm = () => {
         ? updateSchedule(Number(scheduleId), request)
         : createSchedule(request),
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        predicate: (query) =>
+          Array.isArray(query.queryKey) && query.queryKey[0] === "schedules",
+      });
       toast.success(`Horario ${isEdit ? "actualizado" : "creado"} exitosamente.`);
       navigate(RoutesDoctor.DOCTOR_SCHEDULES);
     },

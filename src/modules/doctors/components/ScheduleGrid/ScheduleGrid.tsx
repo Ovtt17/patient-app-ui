@@ -51,19 +51,27 @@ export const ScheduleGrid: FC<ScheduleGridProps> = ({ schedules }) => {
         <Card
           key={s.id}
           className={cn(
-            "shadow-sm border border-gray-200 hover:shadow-md transition-all"
+            `
+            border border-gray-200 dark:border-gray-700 
+            bg-white dark:bg-gray-800 
+            text-gray-800 dark:text-gray-100 
+            shadow-sm hover:shadow-md 
+            hover:border-blue-400 dark:hover:border-blue-500 
+            transition-all duration-300
+            rounded-2xl
+          `
           )}
         >
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <CalendarDays className="w-5 h-5 text-blue-500" />
+            <CardTitle className="flex items-center gap-2 text-gray-800 dark:text-gray-100">
+              <CalendarDays className="w-5 h-5 text-blue-600 dark:text-blue-400" />
               {dayLabels[s.dayOfWeek]}
             </CardTitle>
           </CardHeader>
 
           <CardContent>
-            <div className="flex items-center gap-2 text-gray-700">
-              <Clock className="w-4 h-4 text-gray-500" />
+            <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+              <Clock className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span className="font-medium">
                 {formatTime(s.startTime)} - {formatTime(s.endTime)}
               </span>
