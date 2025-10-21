@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import type { ScheduleResponse } from "../../types/ScheduleResponse";
 import { parse, format } from "date-fns";
-import { es } from "date-fns/locale";
 
 interface ScheduleGridProps {
   schedules: ScheduleResponse[];
@@ -32,9 +31,10 @@ const dayLabels: Record<string, string> = {
 
 const formatTime = (time: string) => {
   try {
-    // Interpretamos la hora como local (sin convertir zona)
-    const date = parse(time, "HH:mm", new Date());
-    return format(date, "hh:mm a", { locale: es }).toLowerCase();
+    const cleanTime = time.trim();
+    const hasSeconds = cleanTime.split(":").length === 3;
+    const date = parse(cleanTime, hasSeconds ? "HH:mm:ss" : "HH:mm", new Date());
+    return format(date, "hh:mm a").toLowerCase(); // "08:00 am"
   } catch {
     return time;
   }
