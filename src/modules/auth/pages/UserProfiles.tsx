@@ -3,12 +3,15 @@ import type { FC, ReactNode } from "react";
 import UserMetaCard from "../components/UserMetaCard/UserMetaCard";
 import UserInfoCard from "../components/UserProfile/UserInfoCard";
 import { useFetchUserProfile } from "../hooks/useFetchUserProfile";
+import { useAuth } from "@/shared/context/auth/useAuth";
+import DoctorInfoCard from "@/modules/doctors/components/DoctorInfoCard/DoctorInfoCard";
 
 interface UserProfileProps {
   children?: ReactNode;
 }
 
 const UserProfiles: FC<UserProfileProps> = ({ children }) => {
+  const { isUserDoctor, isUserPatient } = useAuth();
   const {
     user,
     isLoading,
@@ -52,6 +55,8 @@ const UserProfiles: FC<UserProfileProps> = ({ children }) => {
       <div className="rounded-2xl space-y-6 border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
         <UserMetaCard user={user} />
         <UserInfoCard user={user} />
+        {isUserDoctor && <DoctorInfoCard userId={user.id} />}
+        {isUserPatient && <p>Eres un paciente</p>}
         {children}
       </div>
     </section>

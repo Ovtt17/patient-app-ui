@@ -86,10 +86,10 @@ export const DoctorCard = ({ doctor }: DoctorCardProps) => {
         {specialties?.length ? (
           specialties.map((spec) => (
             <span
-              key={spec}
+              key={spec.id}
               className="text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-md"
             >
-              {spec}
+              {spec.name}
             </span>
           ))
         ) : (
