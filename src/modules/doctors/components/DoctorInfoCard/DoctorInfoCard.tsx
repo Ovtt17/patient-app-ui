@@ -49,7 +49,7 @@ const DoctorInfoCard: FC<DoctorInfoCardProps> = ({ userId }) => {
       <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
         <div>
           <h4 className="text-lg font-semibold text-gray-800 dark:text-white/90">
-            Información Medica
+            Información Médica
           </h4>
           {error && <ErrorDisplay errors={error} />}
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-7 2xl:gap-x-32">
