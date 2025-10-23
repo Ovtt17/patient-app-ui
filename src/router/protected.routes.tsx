@@ -1,5 +1,5 @@
 import appointmentRoutes from "@/modules/appointments/routes/appointment.routes";
-import Profile from "@/modules/auth/components/profile/Profile";
+import UserProfiles from "@/modules/auth/pages/UserProfiles";
 import Loader from "@/shared/components/Loader/Loader";
 import { Routes } from "@/shared/constants/routes";
 import { Suspense } from "react";
@@ -11,7 +11,7 @@ const protectedRoutes: RouteObject[] = [
     path: Routes.PROFILE,
     element: (
       <Suspense fallback={<Loader />}>
-        <Profile />
+        <UserProfiles />
       </Suspense>
     )
   }
