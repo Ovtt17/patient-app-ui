@@ -46,7 +46,7 @@ const EditDoctorForm: FC<EditDoctorFormProps> = ({ onClose }) => {
           />
           <InputField
             id="appointmentDuration"
-            label="Duración de la Cita (minutos)"
+            label="Duración de citas (minutos)"
             placeholder="30"
             type="number"
             icon={<BuildingOfficeIcon className="w-5 h-5 text-gray-400" />}
