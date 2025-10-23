@@ -1,4 +1,5 @@
 import type { Gender } from "@/shared/types/Gender";
+import type { SpecialtyResponse } from "./SpecialtyResponse";
 
 export interface DoctorResponse {
   id: string;
@@ -12,6 +13,6 @@ export interface DoctorResponse {
   officeNumber: string;
   userId: string;
   zoneId: string;
-  specialties: string[];
+  specialties: SpecialtyResponse[];
 }
 
