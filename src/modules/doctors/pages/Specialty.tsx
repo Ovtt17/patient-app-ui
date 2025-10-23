@@ -20,7 +20,7 @@ const Specialty = () => {
     );
 
   return (
-    <section className="p-6 flex flex-col gap-3">
+    <section className="flex flex-col gap-3">
       <PageHeader title="Especialidades" />
       {errors && <ErrorDisplay errors={errors} />}
       <SpecialtyGrid specialties={specialties || []} />

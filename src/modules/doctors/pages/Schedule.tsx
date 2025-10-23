@@ -18,7 +18,7 @@ const Schedule = () => {
     );
 
   return (
-    <section className="p-6 flex flex-col gap-5 bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <section className="flex flex-col gap-5 bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
       <PageHeader title="Horarios" />
 
       <div className="flex items-center gap-3">

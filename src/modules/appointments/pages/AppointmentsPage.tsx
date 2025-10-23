@@ -20,7 +20,7 @@ export const AppointmentsPage: FC = () => {
   }, [search, filterStatus]);
 
   return (
-    <div className="p-6 max-w-7xl space-y-6 mx-auto">
+    <div>
       {/* Título */}
       <PageHeader title="Citas Médicas" />
       

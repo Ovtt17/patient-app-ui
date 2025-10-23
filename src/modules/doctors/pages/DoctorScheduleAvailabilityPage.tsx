@@ -18,7 +18,7 @@ const DoctorScheduleAvailabilityPage = () => {
     );
 
   return (
-    <div className="p-6">
+    <div>
       <PageHeader title="Horarios y Disponibilidad" />
       {schedulesErrors && <ErrorDisplay errors={schedulesErrors} />}
       {availabilityErrors && <ErrorDisplay errors={availabilityErrors} />}

@@ -12,7 +12,7 @@ const ScheduleCreate = () => {
   return (
     <article
       className={cn(
-        "p-6 flex flex-col gap-3",
+        "flex flex-col gap-3",
         isSubmitting && "opacity-60 pointer-events-none"
       )}
     >

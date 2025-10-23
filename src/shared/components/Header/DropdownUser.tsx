@@ -3,15 +3,14 @@ import { ArrowLeftStartOnRectangleIcon, UserCircleIcon } from "@heroicons/react/
 import UserAvatarCell from "@/modules/auth/components/user/UserAvatarCell.tsx";
 import { useAuth } from "@/shared/context/auth/useAuth";
 import ClickOutside from "@/shared/utils/ClickOutside";
-import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { Routes } from "@/shared/constants/routes";
 
 const DropdownUser = () => {
   const { logout, user } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const navigate = useNavigate();
 
   const handleProfile = () => {
-    navigate("/profile"); // Redirige a la página de perfil
     setDropdownOpen(false);
   };
 
@@ -28,23 +27,22 @@ const DropdownUser = () => {
       {/* Dropdown */}
       {dropdownOpen && (
         <div className="absolute right-0 mt-4 flex w-64 flex-col rounded-lg text-gray-800 dark:text-gray-100 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg z-50">
-          
           {/* View Profile */}
-          <button
+          <NavLink
+            to={Routes.PROFILE}
             onClick={handleProfile}
             className="flex items-center gap-4 px-6 py-4 text-sm font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors lg:text-base cursor-pointer border-b border-gray-200 dark:border-gray-700"
           >
             <UserCircleIcon className="w-6 h-6" />
             Ver Perfil
-          </button>
-
+          </NavLink>
           {/* Logout */}
           <button
             onClick={logout}
             className="flex items-center gap-4 px-6 py-4 text-sm font-medium hover:text-red-600 dark:hover:text-red-400 transition-colors lg:text-base cursor-pointer"
           >
             <ArrowLeftStartOnRectangleIcon className="w-6 h-6" />
-           Cerrar Sesión
+            Cerrar Sesión
           </button>
         </div>
       )}
