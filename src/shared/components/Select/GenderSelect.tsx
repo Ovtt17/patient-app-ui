@@ -1,4 +1,5 @@
 import { GENDERS } from "@/shared/types/Gender";
+import { get } from "lodash";
 import type { FC } from "react";
 import { useFormContext } from "react-hook-form";
 
@@ -7,18 +8,19 @@ interface GenderSelectProps {
 }
 
 const GenderSelect: FC<GenderSelectProps> = ({ fieldName }) => {
-  const { register } = useFormContext();
+  const { register, formState: { errors } } = useFormContext();
+  const error = get(errors, fieldName);
 
   return (
     <div className="w-full mb-2">
-      <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">
+      <label className="mb-2.5 block font-bold text-gray-700 dark:text-gray-200">
         Género
       </label>
       <div className="relative">
         <select
           id={fieldName}
           {...register(fieldName)}
-          className="w-full appearance-none h-12 px-4 pr-10 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-boxdark text-sm text-gray-800 dark:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+          className="w-full cursor-pointer appearance-none py-4.5 pl-6 pr-10 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-boxdark text-sm text-gray-800 dark:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
           aria-label="Selecciona tu género"
         >
           {Object.values(GENDERS).map((gender) => (
@@ -45,6 +47,7 @@ const GenderSelect: FC<GenderSelectProps> = ({ fieldName }) => {
           </svg>
         </div>
       </div>
+      {error && <p className="text-red-500 text-sm pt-1">{String(error.message)}</p>}
     </div>
   );
 };

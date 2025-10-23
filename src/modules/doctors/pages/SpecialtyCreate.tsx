@@ -16,7 +16,7 @@ const SpecialtyCreate = () => {
 
   const { isSubmitting } = form.formState;
   return (
-    <article className={cn("p-6 flex flex-col gap-3", isSubmitting && "opacity-60 pointer-events-none")}>
+    <article className={cn("flex flex-col gap-3", isSubmitting && "opacity-60 pointer-events-none")}>
       <PageHeader title="Crear Especialidad" />
       {(error || errorFetch) ? <ErrorDisplay errors={error || errorFetch} /> : null}
       <FormProvider {...form}>
