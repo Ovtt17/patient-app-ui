@@ -7,8 +7,8 @@ import SpecialtyCreate from "@/modules/doctors/pages/SpecialtyCreate";
 import { ReportsAdmin } from "@/modules/reports/pages/ReportsAdmin";
 import { AdminDashboard } from "../pages/Dashboard";
 
+const Doctor = lazy(() => import("@/modules/doctors/pages/Doctor"));
 const DoctorCreate = lazy(() => import("@/modules/doctors/pages/DoctorCreate"));
-const DoctorListPage = lazy(() => import("@/modules/doctors/pages/DoctorListPage"));
 const Patient = lazy(() => import("@/modules/patient/pages/Patient"));
 const PatientCreate = lazy(() => import("@/modules/patient/pages/PatientCreate"));
 
@@ -29,7 +29,7 @@ const adminRoutes: RouteObject[] = [
     path: RoutesAdmin.ADMIN_DOCTORS,
     element: (
       <Suspense fallback={<Loader />}>
-        <DoctorListPage />
+        <Doctor />
       </Suspense>
     ),
   },

@@ -6,14 +6,13 @@ import { DoctorGrid } from "../components/DoctorListPage/DoctorGrid";
 import ErrorDisplay from "@/modules/errors/components/ErrorDisplay";
 import DoctorTable from "../components/DoctorTable/DoctorTable";
 import { MagnifyingGlassIcon, Squares2X2Icon, TableCellsIcon } from "@heroicons/react/24/outline";
-import { mockDoctors } from "../mocks/mockDoctors";
 
-const DoctorListPage = () => {
+const Doctor = () => {
   const [search, setSearch] = useState("");
   const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
 
   const {
-    // doctors,
+    doctors,
     totalPages,
     totalElements,
     loading,
@@ -24,10 +23,10 @@ const DoctorListPage = () => {
 
   const filteredDoctors = useMemo(
     () =>
-      mockDoctors?.filter((d) =>
+      doctors?.filter((d) =>
         `${d.firstName} ${d.lastName}`.toLowerCase().includes(search.toLowerCase())
       ),
-    [mockDoctors, search]
+    [doctors, search]
   );
 
   if (loading)
@@ -106,4 +105,4 @@ const DoctorListPage = () => {
   );
 };
 
-export default DoctorListPage;
+export default Doctor;
