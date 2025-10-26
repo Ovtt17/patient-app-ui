@@ -4,7 +4,6 @@ import Loader from "@/shared/components/Loader/Loader";
 import { RoutesDoctor } from './RoutesDoctor';
 
 const Specialty = lazy(() => import("@/modules/doctors/pages/Specialty"));
-const DoctorScheduleAvailabilityPage = lazy(() => import("../pages/DoctorScheduleAvailabilityPage"));
 const ScheduleCreate = lazy(() => import("../pages/ScheduleCreate"));
 const Patient = lazy(() => import("@/modules/patient/pages/Patient"));
 const PatientCreate = lazy(() => import("@/modules/patient/pages/PatientCreate"));
@@ -43,14 +42,6 @@ const doctorRoutes: RouteObject[] = [
 			</Suspense>
 		),
   },
-  {
-    path: RoutesDoctor.DOCTOR_AVAILABILITY,
-    element: (
-      <Suspense fallback={<Loader />}>
-        <DoctorScheduleAvailabilityPage />
-      </Suspense>
-    ),
-	},
 	{
 		path: RoutesDoctor.DOCTOR_SCHEDULES_CREATE,
 		element: (
