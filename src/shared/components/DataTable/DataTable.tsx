@@ -1,8 +1,8 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/24/solid';
-import { ColumnDef, flexRender, getCoreRowModel, useReactTable, getSortedRowModel, SortingState, getFilteredRowModel } from '@tanstack/react-table';
+import { type ColumnDef, flexRender, getCoreRowModel, useReactTable, getSortedRowModel, type SortingState, getFilteredRowModel } from '@tanstack/react-table';
 import { useState } from 'react';
-import SearchBar from './SearchBar';
+import SearchBar from '../SearchBar/SearchBar';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

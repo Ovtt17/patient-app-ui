@@ -13,7 +13,8 @@ interface UserInfoCardProps {
 
 const UserInfoCard: FC<UserInfoCardProps> = ({ user }) => {
   const { isOpen, openModal, closeModal } = useModal();
-  const { isUserDoctor, isUserAdmin } = useAuth();
+  const { isUserSuperAdmin, isUserAdmin, isUserDoctor } = useAuth();
+  const canEdit = isUserSuperAdmin || isUserAdmin || isUserDoctor;
 
   return (
     <article className="p-5 border border-gray-200 rounded-2xl dark:border-gray-800 lg:p-6">
@@ -73,7 +74,7 @@ const UserInfoCard: FC<UserInfoCardProps> = ({ user }) => {
           </div>
         </div>
 
-        {(isUserDoctor || isUserAdmin) && (
+        {(canEdit) && (
           <Button
             onClick={openModal}
             size="sm"

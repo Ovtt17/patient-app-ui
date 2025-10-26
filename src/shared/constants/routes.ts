@@ -7,7 +7,6 @@ export const Routes = {
   DIAGNOSTIC_CENTERS: "/centros-diagnosticos",
   HOSPITAL_SERVICES: "/servicios",
   
-  APPOINTMENTS: 'citas',
-  APPOINTMENTS_CREATE: 'citas/crear',
-  APPOINTMENTS_UPCOMING: 'citas/proximas',
+  APPOINTMENTS: '/citas',
+  APPOINTMENTS_CREATE: '/citas/crear',
 } as const;

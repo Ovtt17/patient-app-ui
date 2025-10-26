@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { useAllDoctors } from "../hooks/useAllDoctors";
+import { usePaginatedDoctors } from "../hooks/usePaginatedDoctors";
 import { PaginationControls } from "@/shared/components/PaginationControls/PaginationControls";
 import { DoctorHeader } from "../components/DoctorListPage/DoctorHeader";
 import { DoctorGrid } from "../components/DoctorListPage/DoctorGrid";
@@ -19,7 +19,7 @@ const Doctor = () => {
     error,
     page,
     handlePageChange,
-  } = useAllDoctors();
+  } = usePaginatedDoctors();
 
   const filteredDoctors = useMemo(
     () =>
@@ -41,7 +41,7 @@ const Doctor = () => {
   return (
     <section>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-        <DoctorHeader search={search} onSearchChange={setSearch} />
+        <DoctorHeader />
         {/* Toggle Grid / Table */}
         <div className="flex gap-2">
           <button

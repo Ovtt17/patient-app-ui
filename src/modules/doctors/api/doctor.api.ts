@@ -4,14 +4,23 @@ import { handleError } from "@/modules/errors/utils/handle-error";
 import type { PaginationParams } from "@/shared/types/PaginationParams";
 import type { DoctorResponse } from "../types/DoctorResponse";
 
-export const getAllDoctors = async ({
+export const getAllDoctors = async (): Promise<DoctorResponse[]> => {
+  try {
+    const response = await axiosInstance.get<DoctorResponse[]>(`/doctors/all`);
+    return response.data;
+  } catch (error) {
+    throw handleError(error);
+  }
+}
+
+export const getPaginatedDoctors = async ({
   page = 0,
   size = 20,
   sortBy = "createdDate",
   sortOrder = "desc",
 }: PaginationParams): Promise<DoctorPagedResponse> => {
   try {
-    const response = await axiosInstance.get<DoctorPagedResponse>("/doctors", {
+    const response = await axiosInstance.get<DoctorPagedResponse>("/doctors/paged", {
       params: { page, size, sortBy, sortOrder },
     });
     return response.data;

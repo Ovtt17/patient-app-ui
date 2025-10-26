@@ -3,7 +3,7 @@ import { Routes } from "@/shared/constants/routes";
 import { Suspense } from "react";
 import type { RouteObject } from "react-router-dom";
 import { AppointmentsPage } from "../pages/AppointmentsPage";
-import { ScheduleAppointmentPage } from "../pages/AppointmentForm";
+import AppointmentCreate from "../pages/AppointmentCreate";
 
 const appointmentRoutes: RouteObject[] = [
   {
@@ -18,7 +18,7 @@ const appointmentRoutes: RouteObject[] = [
     path: Routes.APPOINTMENTS_CREATE,
     element: (
       <Suspense fallback={<Loader />}>
-        <ScheduleAppointmentPage />
+        <AppointmentCreate />
       </Suspense>
     ),
   }

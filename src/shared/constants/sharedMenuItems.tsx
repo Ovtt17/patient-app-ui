@@ -17,7 +17,7 @@ const sharedMenuItems: SidebarMenuItem[] = [
         icon: <ClockIcon />,
       },
       {
-        title: "Registrar cita",
+        title: "Agendar cita",
         href: Routes.APPOINTMENTS_CREATE,
         icon: <PlusIcon />,
       },

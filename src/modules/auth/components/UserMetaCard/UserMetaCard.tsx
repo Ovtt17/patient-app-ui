@@ -15,14 +15,15 @@ interface UserMetaCardProps {
 
 const UserMetaCard: FC<UserMetaCardProps> = ({ user }) => {
   const { isOpen, openModal, closeModal } = useModal();
-  const { isUserDoctor, isUserAdmin } = useAuth();
+  const { isUserSuperAdmin, isUserAdmin, isUserDoctor } = useAuth();
+  const canEdit = isUserSuperAdmin || isUserAdmin || isUserDoctor;
 
   return (
     <>
       <div className="p-5 border border-gray-200 rounded-2xl dark:border-gray-800 lg:p-6">
         <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
           <UserAvatarSection user={user} />
-          {(isUserDoctor || isUserAdmin) && (
+          {canEdit && (
             <Button
               onClick={openModal}
               size="sm"
