@@ -1,4 +1,4 @@
-import Button from "@/shared/components/button/Button";
+import { Button } from "@/components/ui/button";
 import Input from "@/shared/components/Input/Input";
 import Label from "@/shared/components/Label/Label";
 import { Modal } from "@/shared/components/modal";
