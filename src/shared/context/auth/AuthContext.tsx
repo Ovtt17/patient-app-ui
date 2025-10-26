@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const login = (user: User) => {
     setUser(user);
@@ -27,9 +27,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     navigate(Routes.HOME);
   };
 
+  const isUserSuperAdmin: boolean = user ? user.roles.includes(Role.SUPER_ADMIN) : false;
   const isUserAdmin: boolean = user ? user.roles.includes(Role.ADMIN) : false;
   const isUserDoctor: boolean = user ? user.roles.includes(Role.DOCTOR) : false;
-  const isUserPatient: boolean = user ? user.roles.includes(Role.PATIENT) : false;
+  const isUserPatient: boolean = user ? user.roles.includes(Role.PATIENT) : true;
 
   const updateUser = (userUpdated: User) => {
     setUser(prevUser => prevUser && String(prevUser.id) === String(userUpdated.id)
@@ -62,14 +63,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   return (
     <AuthContext.Provider value={{
       isAuthenticated,
+      isUserSuperAdmin,
       isUserAdmin,
+      isUserDoctor,
+      isUserPatient,
       user,
       loading,
       login,
       logout,
       updateUser,
-      isUserDoctor,
-      isUserPatient
     }}>
       {children}
     </AuthContext.Provider>
