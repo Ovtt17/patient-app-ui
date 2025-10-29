@@ -1,6 +1,8 @@
 import axiosInstance from "@/config/axiosInstance";
 import type { AppointmentRequest } from "../types/AppointmentRequest";
 import { handleError } from "@/modules/errors/utils/handle-error";
+import type { AppointmentResponse } from "../types/AppointmentResponse";
+import type { AppointmentFilter } from "../types/AppointmentFilter";
 
 export const createAppointment = async (request: AppointmentRequest): Promise<AppointmentRequest> => {
   try {
@@ -29,9 +31,9 @@ export const cancelAppointment = async (appointmentId: number): Promise<void> =>
   }
 };
 
-export const getAppointmentsByPatient = async (patientId: string, fromDate?: string): Promise<AppointmentRequest[]> => {
+export const getAppointmentsByPatient = async (patientId: string, fromDate?: Date): Promise<AppointmentResponse[]> => {
   try {
-    const { data } = await axiosInstance.get<AppointmentRequest[]>(`/appointments/patient/${patientId}`,
+    const { data } = await axiosInstance.get<AppointmentResponse[]>(`/appointments/patient/${patientId}`,
       { params: fromDate ? { fromDate } : undefined }
     );
     return data;
@@ -40,3 +42,26 @@ export const getAppointmentsByPatient = async (patientId: string, fromDate?: str
   }
 };
 
+export const getAppointmentsByDoctor = async (doctorId: string, fromDate?: Date): Promise<AppointmentResponse[]> => {
+  try {
+    const { data } = await axiosInstance.get<AppointmentResponse[]>(`/appointments/doctor/${doctorId}`,
+      { params: fromDate ? { fromDate } : undefined }
+    );
+    return data;
+  } catch (error) {
+    throw handleError(error);
+  }
+};
+
+export const getAppointmentsFiltered = async (filter: AppointmentFilter): Promise<AppointmentResponse[]> => {
+  try {
+    const { data } = await axiosInstance.get<AppointmentResponse[]>(`/appointments/filter`, {
+      params: {
+        filter
+      }
+    });
+    return data;
+  } catch (error) {
+    throw handleError(error);
+  }
+}
