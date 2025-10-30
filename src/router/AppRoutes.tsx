@@ -33,7 +33,7 @@ const AppRoutes = () => {
       ))}
 
       {/* Rutas protegidas para cualquier usuario autenticado */}
-      <Route element={<ProtectedRoutes />}>
+      <Route element={<ProtectedRoutes allowedRoles={[]} redirectPath={ROUTES.LOGIN} />}>
         {protectedRoutes.map((route) => (
           <Route key={route.path} path={route.path} element={route.element} />
         ))}

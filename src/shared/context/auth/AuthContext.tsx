@@ -12,12 +12,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const login = (user: User) => {
+  const login = (user: User, redirectTo?: string) => {
     setUser(user);
     setIsAuthenticated(true);
-    navigate(Routes.HOME);
+    navigate(redirectTo || Routes.HOME);
   };
 
   const logout = async () => {
