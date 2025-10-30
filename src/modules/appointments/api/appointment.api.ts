@@ -3,6 +3,7 @@ import type { AppointmentRequest } from "../types/AppointmentRequest";
 import { handleError } from "@/modules/errors/utils/handle-error";
 import type { AppointmentResponse } from "../types/AppointmentResponse";
 import type { AppointmentFilter } from "../types/AppointmentFilter";
+import type { AppointmentStatus } from "../types/AppointmentStatus";
 
 export const createAppointment = async (request: AppointmentRequest): Promise<AppointmentRequest> => {
   try {
@@ -55,13 +56,20 @@ export const getAppointmentsByDoctor = async (doctorId: string, fromDate?: Date)
 
 export const getAppointmentsFiltered = async (filter: AppointmentFilter): Promise<AppointmentResponse[]> => {
   try {
-    const { data } = await axiosInstance.get<AppointmentResponse[]>(`/appointments/filter`, {
-      params: {
-        filter
-      }
-    });
+    const { data } = await axiosInstance.post<AppointmentResponse[]>(`/appointments/filter`, filter);
     return data;
   } catch (error) {
     throw handleError(error);
   }
 }
+
+export const updateAppointmentStatus = async (appointmentId: number, status: AppointmentStatus): Promise<number> => {
+  try {
+    const response = await axiosInstance.patch(`/appointments/${appointmentId}/status`, {}, {
+      params: { status }
+    });
+    return response.data;
+  } catch (error) {
+    throw handleError(error);
+  }
+};

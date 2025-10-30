@@ -1,13 +1,35 @@
-import { useAuth } from "@/shared/context/auth/useAuth";
 import type { FC } from "react";
-import DoctorAppointmentsPage from "../components/DoctorAppointmentPage";
-import PatientAppointmentsPage from "../components/PatientAppointmentsPage";
+import { useFilteredAppointments } from "../hooks/useFilteredAppointments";
+import PageHeader from "@/shared/components/Header/PageHeader";
+import { AppointmentTimeline } from "../components/Appointment/AppointmentTimeline";
+import DateRangeToolbar from "@/shared/components/DatePickerWithRange/DateRangeToolbar";
+import ErrorDisplay from "@/modules/errors/components/ErrorDisplay";
+import AppointmentStatusFilter from "../components/Appointment/AppointmentStatusFilter";
 
-export const Appointment: FC = () => {
-  const { isUserDoctor, isUserPatient } = useAuth();
+const Appointment: FC = () => {
+  const {
+    data: appointments,
+    isLoading,
+    error,
+    date,
+    onDateChange,
+    onCurrentMonth
+  } = useFilteredAppointments();
 
-  if (isUserDoctor) return <DoctorAppointmentsPage />;
-  if (isUserPatient) return <PatientAppointmentsPage />;
-
-  return <div>No tienes permiso para ver esta página.</div>;
+  return (
+    <>
+      <PageHeader title="Citas Médicas" />
+      <ErrorDisplay errors={error} />
+      {isLoading && <div>Cargando citas...</div>}
+      <DateRangeToolbar
+        date={date}
+        onDateChange={onDateChange}
+        onCurrentMonth={onCurrentMonth}
+      />
+      <AppointmentStatusFilter />
+      <AppointmentTimeline appointments={appointments} />
+    </>
+  )
 };
+
+export default Appointment;

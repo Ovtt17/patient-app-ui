@@ -10,6 +10,6 @@ export const useAppointmentsBase = ({ queryKey, fetchFn }: UseAppointmentsBasePr
   return useQuery({
     queryKey,
     queryFn: fetchFn,
-    staleTime: 1000 * 60 * 5,
+    // staleTime: 1000 * 60 * 5,
   });
 };
