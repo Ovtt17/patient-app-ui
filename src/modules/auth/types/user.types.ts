@@ -13,4 +13,6 @@ export interface User {
   roles: Role[];
   gender: Gender;
   mustChangePassword: boolean;
+  patientId?: string;
+  doctorId?: string;
 }

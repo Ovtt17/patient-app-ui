@@ -42,7 +42,7 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
         />
 
         {/* Contenido */}
-        <main className="relative w-full flex-1 md:h-[calc(100vh-10%)] p-2 md:p-6">
+        <main className="relative w-full flex-1 md:h-[calc(100vh-10%)] p-4 md:p-6">
           {children}
         </main>
       </div>
