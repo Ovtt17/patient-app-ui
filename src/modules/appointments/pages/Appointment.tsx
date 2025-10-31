@@ -5,6 +5,8 @@ import { AppointmentTimeline } from "../components/Appointment/AppointmentTimeli
 import DateRangeToolbar from "@/shared/components/DatePickerWithRange/DateRangeToolbar";
 import ErrorDisplay from "@/modules/errors/components/ErrorDisplay";
 import AppointmentFilters from "../components/Appointment/AppointmentFilters";
+import { NavLink } from "react-router-dom";
+import { Routes } from "@/shared/constants/routes";
 
 const Appointment: FC = () => {
   const {
@@ -33,6 +35,14 @@ const Appointment: FC = () => {
       <PageHeader title="Citas Médicas" />
       <ErrorDisplay errors={error} />
       {isLoading && <div>Cargando citas...</div>}
+      <div className="flex justify-end my-3">
+        <NavLink
+          to={Routes.APPOINTMENTS_CREATE}
+          className="px-3 py-1 rounded-md bg-green-500 text-white hover:bg-green-600 transition"
+        >
+          Agendar cita
+        </NavLink>
+      </div>
       <DateRangeToolbar
         date={date}
         onDateChange={onDateChange}

@@ -18,10 +18,15 @@ export const getAllActivePatients = async ({
   size = 20,
   sortBy = "createdDate",
   sortOrder = "desc",
-}: PaginationParams): Promise<PatientPagedResponse> => {
+  name,
+  email,
+  phone
+}: PaginationParams
+  & { name?: string; email?: string; phone?: string }
+): Promise<PatientPagedResponse> => {
   try {
     const response = await axiosInstance.get<PatientPagedResponse>("/patients", {
-      params: { page, size, sortBy, sortOrder },
+      params: { page, size, sortBy, sortOrder, name, email, phone },
     });
     return response.data;
   } catch (error) {

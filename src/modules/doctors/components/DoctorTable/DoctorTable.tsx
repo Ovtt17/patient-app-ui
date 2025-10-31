@@ -6,6 +6,7 @@ import { type ColumnDef, flexRender, useReactTable, getCoreRowModel, getFiltered
 import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/24/solid";
 import SearchBar from "@/shared/components/SearchBar/SearchBar"; // tu componente de búsqueda
 import { Badge } from "@/components/ui/badge";
+import type { SpecialtyResponse } from "../../types/SpecialtyResponse";
 
 interface DoctorTableProps {
   doctors: DoctorResponse[];
@@ -32,14 +33,15 @@ const DoctorTable: FC<DoctorTableProps> = ({ doctors }) => {
         header: "Especialidades",
         cell: info => (
           <div className="flex flex-wrap justify-center gap-1">
-            {info.getValue<string[]>().map((spec, idx) => (
-              <Badge key={idx} className="bg-blue-100 text-blue-800 border-blue-300">
-                {spec}
+            {info.getValue<SpecialtyResponse[]>().map((spec) => (
+              <Badge key={spec.id} className="bg-blue-100 text-blue-800 border-blue-300">
+                {spec.name}
               </Badge>
             ))}
           </div>
         )
       }
+
     ],
     []
   );
@@ -57,7 +59,7 @@ const DoctorTable: FC<DoctorTableProps> = ({ doctors }) => {
 
   return (
     <>
-      <SearchBar filtering={filtering} setFiltering={setFiltering} />
+      <SearchBar filtering={filtering} setFiltering={setFiltering} placeholder="Buscar doctor..." />
 
       <section className="border border-stroke bg-white shadow-sm rounded-xl overflow-x-auto">
         <Table className="min-w-full table-auto">

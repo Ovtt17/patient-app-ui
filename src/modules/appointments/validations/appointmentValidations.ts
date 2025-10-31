@@ -1,7 +1,11 @@
 import { z } from 'zod';
 
+const patientStepSchema = z.object({
+  userId: z.string().min(1, 'Debe seleccionar un paciente').nonempty(),
+});
+
 const doctorStepSchema = z.object({
-  doctorId: z.string().min(1, 'Debe seleccionar un doctor')
+  doctorId: z.string().min(1, 'Debe seleccionar un doctor').nonempty()
 });
 
 const scheduleStepSchema = z.object({
@@ -23,6 +27,7 @@ export const appointmentRequestSchema = z.object({
 });
 
 export const stepSchemas = {
+  patient: patientStepSchema,
   doctor: doctorStepSchema,
   schedule: scheduleStepSchema,
   reason: reasonStepSchema,
