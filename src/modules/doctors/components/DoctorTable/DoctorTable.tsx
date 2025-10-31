@@ -59,7 +59,7 @@ const DoctorTable: FC<DoctorTableProps> = ({ doctors }) => {
 
   return (
     <>
-      <SearchBar filtering={filtering} setFiltering={setFiltering} />
+      <SearchBar filtering={filtering} setFiltering={setFiltering} placeholder="Buscar doctor..." />
 
       <section className="border border-stroke bg-white shadow-sm rounded-xl overflow-x-auto">
         <Table className="min-w-full table-auto">
