@@ -5,8 +5,13 @@ import PageHeader from "@/shared/components/Header/PageHeader";
 import PatientGrid from "../components/PatientGrid/PatientGrid";
 import { PaginationControls } from "@/shared/components/PaginationControls/PaginationControls";
 import PatientTable from "../components/PatientTable/PatientTable";
+import { NavLink } from "react-router-dom";
+import { RoutesAdmin } from "@/modules/admin/routes/RoutesAdmin";
+import { useAuth } from "@/shared/context/auth/useAuth";
+import { RoutesDoctor } from "@/modules/doctors/routes/RoutesDoctor";
 
 const Patient = () => {
+  const { isUserAdmin, isUserDoctor } = useAuth();
   const {
     patients,
     totalPages,
@@ -45,7 +50,14 @@ const Patient = () => {
         </p>
 
         {/* Toggle Grid / Table */}
-        <div className="flex gap-2">
+        <div className="flex flex-row gap-2 justify-end items-center">
+          {/* Botón Crear */}
+          <NavLink
+            to={isUserAdmin ? RoutesAdmin.ADMIN_PATIENTS_CREATE : isUserDoctor ? RoutesDoctor.DOCTOR_PATIENTS_CREATE : '#'}
+            className="px-3 py-1 rounded-md bg-green-500 text-white hover:bg-green-600 transition"
+          >
+            Crear paciente
+          </NavLink>
           <button
             onClick={() => setViewMode("grid")}
             className={`px-3 py-1 rounded-md border ${viewMode === "grid"

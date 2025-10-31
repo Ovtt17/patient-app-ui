@@ -6,6 +6,8 @@ import { DoctorGrid } from "../components/DoctorListPage/DoctorGrid";
 import ErrorDisplay from "@/modules/errors/components/ErrorDisplay";
 import DoctorTable from "../components/DoctorTable/DoctorTable";
 import { Squares2X2Icon, TableCellsIcon } from "@heroicons/react/24/outline";
+import { NavLink } from "react-router-dom";
+import { RoutesAdmin } from "@/modules/admin/routes/RoutesAdmin";
 
 const Doctor = () => {
   const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
@@ -31,14 +33,23 @@ const Doctor = () => {
 
   return (
     <section>
-        <DoctorHeader />
+      <DoctorHeader />
+
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
         <p className="text-sm text-gray-500 dark:text-gray-400">
           {totalElements ?? 0} doctores registrados
         </p>
 
-        {/* Toggle Grid / Table */}
-        <div className="flex gap-2">
+        <div className="flex flex-row gap-2 justify-end items-center">
+          {/* Botón Crear */}
+          <NavLink
+            to={RoutesAdmin.ADMIN_DOCTORS_CREATE}
+            className="px-3 py-1 rounded-md bg-green-500 text-white hover:bg-green-600 transition"
+          >
+            Crear doctor
+          </NavLink>
+
+          {/* Toggle Grid / Table */}
           <button
             onClick={() => setViewMode("grid")}
             className={`px-3 py-1 rounded-md border ${viewMode === "grid"
@@ -59,7 +70,6 @@ const Doctor = () => {
           >
             <TableCellsIcon className="h-5 w-5" />
           </button>
-
         </div>
       </div>
 
@@ -78,6 +88,9 @@ const Doctor = () => {
           onPageChange={handlePageChange}
         />
       ) : null}
+
+      {/* Aquí podrías renderizar tu modal de creación */}
+      {/* {isModalOpen && <DoctorModal onClose={() => setIsModalOpen(false)} fetchDoctors={refetch} />} */}
     </section>
   );
 };
