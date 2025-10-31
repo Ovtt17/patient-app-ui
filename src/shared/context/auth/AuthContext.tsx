@@ -15,6 +15,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   const login = (user: User, redirectTo?: string) => {
+    if (user.mustChangePassword) {
+      navigate(Routes.CHANGE_PASSWORD, { state: { userId: user.id, userFullName: `${user.firstName} ${user.lastName}`, fromLogin: true } });
+      return;
+    }
     setUser(user);
     setIsAuthenticated(true);
     navigate(redirectTo || Routes.HOME);
@@ -24,7 +28,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(null);
     setIsAuthenticated(false);
     await logoutUser();
-    navigate(Routes.HOME);
+    navigate(Routes.LOGIN);
   };
 
   const isUserSuperAdmin: boolean = user ? user.roles.includes(Role.SUPER_ADMIN) : false;
