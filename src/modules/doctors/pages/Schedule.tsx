@@ -3,6 +3,8 @@ import PageHeader from "@/shared/components/Header/PageHeader";
 import { useAllSchedules } from "../hooks/useAllSchedules";
 import ErrorDisplay from "@/modules/errors/components/ErrorDisplay";
 import { ScheduleGrid } from "../components/ScheduleGrid/ScheduleGrid";
+import { NavLink } from "react-router-dom";
+import { RoutesDoctor } from "../routes/RoutesDoctor";
 
 const Schedule = () => {
   const [dayOfWeek, setDayOfWeek] = useState<string>();
@@ -18,7 +20,7 @@ const Schedule = () => {
     );
 
   return (
-    <section className="flex flex-col gap-5 bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors p-5">
+    <section className="flex flex-col gap-3 bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors p-5">
       <PageHeader title="Horarios" />
 
       <div className="flex flex-col sm:flex-row sm:items-center gap-3">
@@ -50,6 +52,15 @@ const Schedule = () => {
           <option value="SATURDAY">Sábado</option>
           <option value="SUNDAY">Domingo</option>
         </select>
+      </div>
+
+      <div className="flex justify-end my-3">
+        <NavLink
+          to={RoutesDoctor.DOCTOR_SCHEDULES_CREATE}
+          className="px-3 py-1 rounded-md bg-green-500 text-white hover:bg-green-600 transition"
+        >
+          Agendar cita
+        </NavLink>
       </div>
 
       {errors && <ErrorDisplay errors={errors} />}
