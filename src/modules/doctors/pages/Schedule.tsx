@@ -18,10 +18,10 @@ const Schedule = () => {
     );
 
   return (
-    <section className="flex flex-col gap-5 bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <section className="flex flex-col gap-5 bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors p-5">
       <PageHeader title="Horarios" />
 
-      <div className="flex items-center gap-3">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-3">
         <label
           htmlFor="dayOfWeek"
           className="text-sm font-medium text-gray-700 dark:text-gray-300"
@@ -53,7 +53,9 @@ const Schedule = () => {
       </div>
 
       {errors && <ErrorDisplay errors={errors} />}
-      <ScheduleGrid schedules={schedules || []} />
+      <div className="transition-colors">
+        <ScheduleGrid schedules={schedules || []} />
+      </div>
     </section>
   );
 };

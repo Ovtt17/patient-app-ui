@@ -4,7 +4,6 @@ import {
   UserGroupIcon,
   ClipboardDocumentListIcon,
   UserPlusIcon,
-  CalendarDaysIcon,
   PlusIcon,
 } from "@heroicons/react/24/outline";
 
@@ -33,16 +32,6 @@ const doctorMenuItems: SidebarMenuItem[] = [
         title: "Horario Base",
         href: RoutesDoctor.DOCTOR_SCHEDULES,
         icon: <ClipboardDocumentListIcon />,
-      },
-      {
-        title: "Disponibilidad",
-        href: RoutesDoctor.DOCTOR_AVAILABILITY,
-        icon: <CalendarDaysIcon />,
-      },
-      {
-        title: "Excepciones",
-        href: RoutesDoctor.DOCTOR_EXCEPTIONS,
-        icon: <CalendarDaysIcon />,
       },
       {
         title: "Registrar Horario",
