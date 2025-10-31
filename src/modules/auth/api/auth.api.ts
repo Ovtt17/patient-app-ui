@@ -3,6 +3,7 @@ import type { RegisterRequest } from "../types/register-request.types";
 import axiosInstance from "@/config/axiosInstance";
 import type { LoginRequest } from "../types/login-request.types";
 import type { User } from "../types/user.types";
+import type { ChangePasswordRequest } from "../types/ChangePasswordRequest";
 
 export const createUser = async (request: RegisterRequest): Promise<string> => {
   try {
@@ -64,6 +65,15 @@ export const getCsrfToken = async (): Promise<string> => {
   try {
     const response = await axiosInstance.get(`/csrf/token`, { withCredentials: true });
     return response.data.token;
+  } catch (error) {
+    throw handleError(error);
+  }
+}
+
+export const changePassword = async (changePasswordRequest: ChangePasswordRequest): Promise<string> => {
+  try {
+    const response = await axiosInstance.post('/auth/change-password', changePasswordRequest);
+    return response.data;
   } catch (error) {
     throw handleError(error);
   }

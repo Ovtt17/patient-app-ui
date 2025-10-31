@@ -35,13 +35,21 @@ const ScheduleForm: FC<ScheduleFormProps> = ({ onSubmit, isEdit }) => {
     >
       {/* Día de la semana */}
       <div className="flex flex-col gap-2">
-        <label htmlFor="dayOfWeek" className="font-medium text-gray-700">
+        <label
+          htmlFor="dayOfWeek"
+          className="font-medium text-gray-700 dark:text-gray-300"
+        >
           Día de la semana
         </label>
         <select
           id="dayOfWeek"
           {...register("dayOfWeek")}
-          className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary"
+          className="
+            border border-gray-300 dark:border-gray-700 rounded-lg p-3
+            bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100
+            focus:outline-none focus:ring-2 focus:ring-primary
+            transition-colors
+          "
         >
           <option value="">Seleccione un día</option>
           {daysOfWeek.map((d) => (
@@ -54,28 +62,28 @@ const ScheduleForm: FC<ScheduleFormProps> = ({ onSubmit, isEdit }) => {
 
       {/* Hora de inicio */}
       <div className="flex flex-col gap-3">
-        <Label htmlFor="start-time-picker" className="px-1">
+        <Label htmlFor="start-time-picker" className="px-1 text-gray-700 dark:text-gray-300">
           Hora de inicio
         </Label>
         <Input
           type="time"
           id="start-time-picker"
           step="60"
-          className="bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+          className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none transition-colors"
           {...register("startTime")}
         />
       </div>
 
       {/* Hora de fin */}
       <div className="flex flex-col gap-3">
-        <Label htmlFor="end-time-picker" className="px-1">
+        <Label htmlFor="end-time-picker" className="px-1 text-gray-700 dark:text-gray-300">
           Hora de fin
         </Label>
         <Input
           type="time"
           id="end-time-picker"
           step="60"
-          className="bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+          className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none transition-colors"
           {...register("endTime")}
         />
       </div>

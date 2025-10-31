@@ -1,7 +1,7 @@
 export const Routes = {
   HOME: "/",
   LOGIN: "/login",
-  ACTIVATE_ACCOUNT: "/activar-cuenta",
+  CHANGE_PASSWORD: "/change-password",
   PROFILE: "/perfil",
   SPECIALTIES: "/especialidades",
   DIAGNOSTIC_CENTERS: "/centros-diagnosticos",

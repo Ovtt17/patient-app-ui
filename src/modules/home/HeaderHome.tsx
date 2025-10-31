@@ -47,7 +47,6 @@ const HeaderHome: FC<PropsWithChildren> = ({ children }) => {
             <Link to="/especialidades" className="hover:text-blue-600">Especialidades</Link>
             <Link to="/centros-diagnosticos" className="hover:text-blue-600">Centros Diagnósticos</Link>
             <Link to="/servicios" className="hover:text-blue-600">Servicios Hospitalarios</Link>
-            <Link to="/registrate" className="hover:text-blue-600">Registrate</Link>
             <Link to="/login" className="hover:text-blue-600">Inicia Sesion</Link>
           </nav>
         )}
