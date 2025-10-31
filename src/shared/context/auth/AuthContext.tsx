@@ -21,14 +21,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
     setUser(user);
     setIsAuthenticated(true);
-    navigate(redirectTo || Routes.HOME);
+    navigate(redirectTo || Routes.HOME, { replace: true });
   };
 
   const logout = async () => {
     setUser(null);
     setIsAuthenticated(false);
     await logoutUser();
-    navigate(Routes.LOGIN);
+    navigate(Routes.HOME);
   };
 
   const isUserSuperAdmin: boolean = user ? user.roles.includes(Role.SUPER_ADMIN) : false;

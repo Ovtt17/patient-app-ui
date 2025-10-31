@@ -11,7 +11,7 @@ interface UserProfileProps {
 }
 
 const UserProfiles: FC<UserProfileProps> = ({ children }) => {
-  const { isUserDoctor, isUserPatient } = useAuth();
+  const { isUserDoctor } = useAuth();
   const {
     user,
     isLoading,
@@ -56,7 +56,6 @@ const UserProfiles: FC<UserProfileProps> = ({ children }) => {
         <UserMetaCard user={user} />
         <UserInfoCard user={user} />
         {isUserDoctor && <DoctorInfoCard userId={user.id} />}
-        {isUserPatient && <p>Eres un paciente</p>}
         {children}
       </div>
     </section>

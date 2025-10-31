@@ -1,17 +1,21 @@
 import { capitalize } from "lodash";
 import type { User } from "../../types/user.types";
+import { useAvatarUrl } from "../../hooks/useAvatarUrl";
 
 interface Props {
   user: User;
 }
 
 export default function UserAvatarSection({ user }: Props) {
+    const avatarUrl = useAvatarUrl(user?.profilePictureUrl, user.username);
+  
   return (
     <div className="flex flex-col items-center w-full gap-6 xl:flex-row">
       <div className="w-20 h-20 overflow-hidden border border-gray-200 rounded-full dark:border-gray-800">
         <img
-          src={user.profilePictureUrl || "https://randomuser.me/api/portraits/men/10.jpg"}
+          src={avatarUrl}
           alt="user avatar"
+          className="h-20 w-20 object-cover rounded-full"
         />
       </div>
 

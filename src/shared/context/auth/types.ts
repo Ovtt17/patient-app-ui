@@ -8,7 +8,7 @@ export interface AuthContextType {
   isUserPatient: boolean;
   user: User | null;
   loading: boolean;
-  login: (user: User) => void;
+  login: (user: User, redirectTo?: string) => void;
   logout: () => Promise<void>;
   updateUser: (userUpdated: User) => void;
 }
