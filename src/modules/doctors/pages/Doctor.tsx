@@ -13,6 +13,7 @@ const Doctor = () => {
   const {
     doctors,
     totalPages,
+    totalElements,
     loading,
     error,
     page,
@@ -30,8 +31,12 @@ const Doctor = () => {
 
   return (
     <section>
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
         <DoctorHeader />
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          {totalElements ?? 0} doctores registrados
+        </p>
+
         {/* Toggle Grid / Table */}
         <div className="flex gap-2">
           <button

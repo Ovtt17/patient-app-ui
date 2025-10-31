@@ -5,15 +5,14 @@ import PageHeader from "@/shared/components/Header/PageHeader";
 import PatientGrid from "../components/PatientGrid/PatientGrid";
 import { PaginationControls } from "@/shared/components/PaginationControls/PaginationControls";
 import PatientTable from "../components/PatientTable/PatientTable";
-import { mockPatients } from "../mocks/mockPatients";
 
 const Patient = () => {
   const {
-    // patients,
+    patients,
     totalPages,
     totalElements,
     loading,
-    error,
+    errors,
     page,
     handlePageChange,
   } = usePaginatedPatients();
@@ -29,7 +28,7 @@ const Patient = () => {
       </div>
     );
 
-  if (error)
+  if (errors)
     return (
       <div className="flex justify-center items-center h-72 text-red-500">
         <p>Ocurrió un error al cargar los pacientes. Intenta nuevamente.</p>
@@ -72,12 +71,12 @@ const Patient = () => {
 
       {/* Contenido */}
       {viewMode === "grid" ? (
-        <PatientGrid patients={mockPatients} />
+        <PatientGrid patients={patients} />
       ) : (
-        <PatientTable patients={mockPatients} />
+        <PatientTable patients={patients} />
       )}
 
-      {mockPatients?.length ? (
+      {patients?.length ? (
         <PaginationControls
           currentPage={page}
           totalPages={totalPages}

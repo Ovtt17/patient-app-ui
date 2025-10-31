@@ -34,7 +34,7 @@ export const PatientTable: FC<PatientTableProps> = ({ patients }) => {
 
   return (
     <>
-      <SearchBar filtering={filtering} setFiltering={setFiltering} />
+      <SearchBar filtering={filtering} setFiltering={setFiltering} placeholder="Buscar paciente..." />
 
       <section className="border border-stroke bg-white shadow-sm rounded-xl overflow-x-auto">
         <Table className="min-w-full table-auto">
