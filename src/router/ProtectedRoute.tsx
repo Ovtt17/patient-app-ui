@@ -15,10 +15,12 @@ const ProtectedRoutes: FC<ProtectedRoutesProps> = ({
   allowedRoles = [],
   redirectPath = Routes.LOGIN
 }) => {
-  const {isAuthenticated, loading, user} = useAuth();
+  const { isAuthenticated, loading, user } = useAuth();
   const location = useLocation();
 
-  if (!isAuthenticated && !loading) {
+  if (loading) return null;
+
+  if (!isAuthenticated) {
     return <Navigate to={Routes.LOGIN} state={{from: location}} replace />;
   }
 

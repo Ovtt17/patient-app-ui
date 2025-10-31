@@ -1,5 +1,7 @@
 import { type FC } from "react";
 import HeaderHome from "../HeaderHome";
+import { NavLink } from "react-router-dom";
+import { Routes } from "@/shared/constants/routes";
 
 const Home: FC = () => {
   return (
@@ -17,9 +19,12 @@ const Home: FC = () => {
           <p className="mt-4 text-xl md:text-3xl max-w-3xl leading-relaxed">
             Atención médica especializada con calidad y compromiso
           </p>
-          <button className="mt-8 px-10 py-4 bg-white dark:bg-gray-800 text-blue-900 dark:text-white rounded-3xl font-semibold shadow-lg hover:shadow-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 text-lg md:text-xl">
+          <NavLink
+            to={Routes.LOGIN}
+            state={{ redirectTo: Routes.APPOINTMENTS_CREATE }}
+            className="mt-8 px-10 py-4 bg-white dark:bg-gray-800 text-blue-900 dark:text-white rounded-3xl font-semibold shadow-lg hover:shadow-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 text-lg md:text-xl">
             Agenda tu cita
-          </button>
+          </NavLink>
         </div>
       </section>
 
