@@ -28,7 +28,7 @@ export const SpecialtyCard = ({ specialty }: SpecialtyCardProps) => {
       </div>
 
       <p className="text-sm text-gray-600 dark:text-gray-400">
-        {description || "No description available"}
+        {description || "Descripción no disponible."}
       </p>
     </article>
   );
