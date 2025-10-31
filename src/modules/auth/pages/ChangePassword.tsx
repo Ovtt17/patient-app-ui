@@ -25,7 +25,7 @@ const ChangePassword: FC = () => {
   const mutation = useMutation({
     mutationFn: (data: ChangePasswordRequest) => changePassword(data),
     onSuccess: () => {
-      toast.success("Contraseña actualizada correctamente");
+      toast.success("Contraseña actualizada correctamente, por favor inicia sesión de nuevo.");
       logout();
     },
     onError: (err: unknown) => {
