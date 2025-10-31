@@ -91,7 +91,7 @@ const Doctor = () => {
       {viewMode === "grid" ? (
         <DoctorGrid doctors={filteredDoctors ?? []} />
       ) : (
-        <DoctorTable doctors={filteredDoctors ?? []} />
+        <DoctorTable doctors={doctors ?? []} />
       )}
 
       {filteredDoctors?.length ? (
