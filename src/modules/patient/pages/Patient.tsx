@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Squares2X2Icon, TableCellsIcon } from "@heroicons/react/24/outline";
-import { useAllPatients } from "@/modules/patient/hooks/useAllPatients";
+import { usePaginatedPatients } from "@/modules/patient/hooks/usePaginatedPatients";
 import PageHeader from "@/shared/components/Header/PageHeader";
 import PatientGrid from "../components/PatientGrid/PatientGrid";
 import { PaginationControls } from "@/shared/components/PaginationControls/PaginationControls";
@@ -16,7 +16,7 @@ const Patient = () => {
     error,
     page,
     handlePageChange,
-  } = useAllPatients();
+  } = usePaginatedPatients();
 
   const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
 

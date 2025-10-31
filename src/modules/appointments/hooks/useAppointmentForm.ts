@@ -9,11 +9,11 @@ import { Routes } from "@/shared/constants/routes";
 
 export const useAppointmentForm = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, isUserPatient } = useAuth();
   const form = useForm<AppointmentRequest>({
     defaultValues: {
       doctorId: '',
-      userId: user?.id || '',
+      userId: isUserPatient ? user?.id : "",
       appointmentStart: null,
       reason: null,
     },

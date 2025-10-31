@@ -23,7 +23,7 @@ export const usePaginatedEntities = <T>({
   const query = useQuery<PaginatedResponse<T>, ProcessedError>({
     queryKey: [key, currentPage, size, sortBy, sortOrder],
     queryFn: () => fetcher({ page: currentPage, size, sortBy, sortOrder }),
-    staleTime: 5 * 60 * 1000,
+    // staleTime: 5 * 60 * 1000,
     retry: 1,
     placeholderData: keepPreviousData,
     enabled,
