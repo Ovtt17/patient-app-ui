@@ -5,7 +5,7 @@ import { RoutesAdmin } from "@/modules/admin/routes/RoutesAdmin.ts";
 import Specialty from "@/modules/doctors/pages/Specialty";
 import SpecialtyCreate from "@/modules/doctors/pages/SpecialtyCreate";
 import { ReportsAdmin } from "@/modules/reports/pages/ReportsAdmin";
-import { AdminDashboard } from "../pages/Dashboard";
+import { AdminDashboard } from "../pages/AdminDashboard";
 
 const Doctor = lazy(() => import("@/modules/doctors/pages/Doctor"));
 const DoctorCreate = lazy(() => import("@/modules/doctors/pages/DoctorCreate"));
