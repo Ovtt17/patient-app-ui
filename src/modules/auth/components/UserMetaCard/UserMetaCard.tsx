@@ -28,24 +28,23 @@ const UserMetaCard: FC<UserMetaCardProps> = ({ user }) => {
         <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
           <UserAvatarSection user={user} />
 
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
             {canEdit && (
               <Button
                 onClick={openEditModal}
                 size="sm"
                 variant="outline"
-                className="dark:bg-boxdark lg:w-auto w-full rounded-3xl px-8 py-6 flex items-center justify-center gap-2 border-gray-300"
+                className="dark:bg-boxdark rounded-3xl px-6 py-3 sm:px-8 sm:py-6 flex items-center justify-center gap-2 w-full sm:w-auto border-gray-300"
               >
                 <PencilIcon className="w-4 h-4" />
                 Editar
               </Button>
             )}
 
-            {/* Botón para abrir modal del QR */}
             <Button
               size="sm"
               variant="outline"
-              className="dark:bg-boxdark lg:w-auto w-full rounded-3xl px-8 py-6 flex items-center justify-center gap-2 border-gray-300"
+              className="dark:bg-boxdark rounded-3xl px-6 py-3 sm:px-8 sm:py-6 flex items-center justify-center gap-2 w-full sm:w-auto border-gray-300"
               onClick={openQRModal}
             >
               <QrCodeIcon className="w-4 h-4" />
