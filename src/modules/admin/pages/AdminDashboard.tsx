@@ -3,11 +3,11 @@ import { UserGroupIcon, UserIcon, CalendarDaysIcon, ClockIcon, XMarkIcon } from 
 import PageHeader from "@/shared/components/Header/PageHeader";
 import { useFetchAdminDashboard } from "../hooks/useFetchAdminDashboard";
 import ErrorDisplay from "@/modules/errors/components/ErrorDisplay";
-import { StatCard } from "../components/dashboard/StatCard";
+import { StatCard } from "../../../shared/components/Dashboard/StatCard";
 import { PieChartCard } from "../components/dashboard/PieChartCard";
 import { TopDoctorsList } from "../components/dashboard/TopDoctorsList";
-import { RecentAppointmentsList } from "../components/dashboard/RecentAppointmentsList";
-import { MonthlyAppointmentsChart } from "../components/dashboard/MonthlyAppointmentsChart";
+import { RecentAppointmentsList } from "@/shared/components/Dashboard/RecentAppointmentsList";
+import { MonthlyAppointmentsChart } from "@/shared/components/Dashboard/MonthlyAppointmentsChart";
 
 export const AdminDashboard: FC = () => {
   const { dashboard, loading, errors } = useFetchAdminDashboard();

@@ -1,4 +1,6 @@
 export const RoutesDoctor = {
+  DOCTOR_DASHBOARD: "/doctor/dashboard",
+
   DOCTOR_SPECIALTIES: "/doctor/especialidades",
 
   DOCTOR_PATIENTS: "/doctor/pacientes",

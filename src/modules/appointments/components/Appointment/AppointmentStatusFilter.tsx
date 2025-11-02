@@ -1,16 +1,8 @@
 import { useState, type FC } from 'react';
-import type { AppointmentStatus } from '../../types/AppointmentStatus';
+import { APPOINTMENT_STATUSES, type AppointmentStatus } from '../../types/AppointmentStatus';
 import { useAppointmentFilters } from '../../context/AppointmentFiltersContext';
 
 interface AppointmentStatusFilterProps { }
-
-const APPOINTMENT_STATUSES: AppointmentStatus[] = [
-  "PENDIENTE",
-  "CONFIRMADA",
-  "CANCELADA",
-  "COMPLETADA",
-  "AUSENTE",
-];
 
 const AppointmentStatusFilter: FC<AppointmentStatusFilterProps> = () => {
   const { filters, updateFilters } = useAppointmentFilters();
