@@ -18,11 +18,11 @@ const adminRoutes: RouteObject[] = [
     element: <Navigate to={RoutesAdmin.ADMIN_DASHBOARD} replace />,
   },
   {
-    path: RoutesAdmin.ADMIN_DASHBOARD,
-    element: <AdminDashboard />,
+    path: '/admin',
+    element: <Navigate to={RoutesAdmin.ADMIN_DASHBOARD} replace />,
   },
   {
-    path: '/admin',
+    path: RoutesAdmin.ADMIN_DASHBOARD,
     element: <AdminDashboard />,
   },
   {

@@ -9,6 +9,11 @@ import {
 
 const doctorMenuItems: SidebarMenuItem[] = [
   {
+    title: "Dashboard",
+    icon: <ClipboardDocumentListIcon />,
+    href: RoutesDoctor.DOCTOR_DASHBOARD,
+  },
+  {
     title: "Gestión de Pacientes",
     icon: <UserGroupIcon />,
     subItems: [
