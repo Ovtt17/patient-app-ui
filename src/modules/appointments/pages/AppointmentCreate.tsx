@@ -1,5 +1,4 @@
-import * as React from 'react';
-import type { FC } from 'react';
+import { useEffect, type FC } from 'react';
 import { FormProvider, useWatch } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -15,8 +14,7 @@ import { useAuth } from '@/shared/context/auth/useAuth';
 import PatientSelector from '../components/AppointmentForm/PatientSelector/PatientSelector';
 import { toast } from 'react-toastify';
 
-// 🧩 Declaramos todos los pasos posibles
-const { useStepper, steps, utils } = defineStepper(
+const { useStepper, steps } = defineStepper(
   { id: 'patient', label: 'Paciente', schema: stepSchemas.patient },
   { id: 'doctor', label: 'Doctor', schema: stepSchemas.doctor },
   { id: 'schedule', label: 'Fecha y Hora', schema: stepSchemas.schedule },
@@ -78,10 +76,11 @@ const AppointmentCreate: FC = () => {
   const patientId = useWatch({ control: form.control, name: 'userId' });
   const doctorId = useWatch({ control: form.control, name: 'doctorId' });
   const appointmentStart = useWatch({ control: form.control, name: 'appointmentStart' });
-  const currentIndex = utils.getIndex(stepper.current.id);
+
+  const activeSteps = steps.filter(step => !(isUserPatient && step.id === 'patient'));
+  const currentStepIndex = activeSteps.findIndex(s => s.id === stepper.current.id);
 
   type AppointmentField = 'userId' | 'doctorId' | 'appointmentStart' | 'reason';
-
   const stepFields: Record<typeof steps[number]["id"], AppointmentField[]> = {
     patient: ['userId'],
     doctor: ['doctorId'],
@@ -112,20 +111,18 @@ const AppointmentCreate: FC = () => {
     if (!valid) return;
     stepper.next();
   };
-  
-  const goToStep = async (targetIndex: number, targetId: typeof steps[number]["id"]) => {
-    // si el paso es anterior o igual, simplemente navega
-    if (targetIndex <= currentIndex) return stepper.goTo(targetId);
 
-    // si es hacia adelante, valida primero
+  const goToStep = async (targetIndex: number, targetId: typeof steps[number]["id"]) => {
+    if (targetIndex <= currentStepIndex) return stepper.goTo(targetId);
     const valid = await validateCurrentStep();
     if (valid) stepper.goTo(targetId);
   };
 
-
-  const activeSteps = stepper.all.filter(step =>
-    isUserPatient ? step.id !== 'patient' : true
-  );
+  useEffect(() => {
+    if (isUserPatient && stepper.current.id === 'patient') {
+      stepper.goTo('doctor');
+    }
+  }, [isUserPatient, stepper.current.id]);
 
   return (
     <FormProvider {...form}>
@@ -136,31 +133,27 @@ const AppointmentCreate: FC = () => {
       >
         {/* Stepper Header */}
         <nav aria-label="Steps" className="mb-6">
-          <ol
-            className={cn(
-              "flex items-center gap-4 overflow-x-auto scrollbar-none px-2 sm:px-0 max-w-full sm:justify-between sm:flex-nowrap"
-            )}
-          >
+          <ol className={cn("flex items-center gap-4 overflow-x-auto scrollbar-none px-2 sm:px-0 max-w-full sm:justify-between sm:flex-nowrap")}>
             {activeSteps.map((step, index, array) => (
-              <React.Fragment key={step.id}>
+              <>
                 <StepButton
+                  key={step.id}
                   index={index}
-                  currentIndex={currentIndex}
+                  currentIndex={currentStepIndex}
                   label={step.label}
                   onClick={() => goToStep(index, step.id)}
-
                 />
                 {index < array.length - 1 && (
                   <Separator
                     className={cn(
                       "flex-1 h-1 rounded-full transition-colors min-w-[40px]",
-                      index < currentIndex
+                      index < currentStepIndex
                         ? "bg-blue-500 dark:bg-purple-500"
                         : "bg-gray-300 dark:bg-gray-700"
                     )}
                   />
                 )}
-              </React.Fragment>
+              </>
             ))}
           </ol>
         </nav>
@@ -168,7 +161,7 @@ const AppointmentCreate: FC = () => {
         {/* Stepper Content */}
         <div className="space-y-6">
           {stepper.switch({
-            patient: () => !isUserPatient && <PatientSelector />,
+            patient: () => (!isUserPatient ? <PatientSelector /> : null),
             doctor: () => <DoctorSelector />,
             schedule: () => (!!doctorId && <DoctorSchedule doctorId={doctorId} />),
             reason: () => <ReasonInput />,
@@ -196,7 +189,7 @@ const AppointmentCreate: FC = () => {
                 disabled={
                   (stepper.current.id === 'schedule' && !appointmentStart) ||
                   (stepper.current.id === 'doctor' && !doctorId) ||
-                  (stepper.current.id === 'patient' && !patientId)
+                  (stepper.current.id === 'patient' && !patientId && !isUserPatient)
                 }
               >
                 Siguiente
