@@ -112,7 +112,7 @@ const AppointmentCreate: FC = () => {
     if (!valid) return;
     stepper.next();
   };
-  
+
   const goToStep = async (targetIndex: number, targetId: typeof steps[number]["id"]) => {
     // si el paso es anterior o igual, simplemente navega
     if (targetIndex <= currentIndex) return stepper.goTo(targetId);
@@ -126,6 +126,8 @@ const AppointmentCreate: FC = () => {
   const activeSteps = stepper.all.filter(step =>
     isUserPatient ? step.id !== 'patient' : true
   );
+
+  const currentStepIndex = activeSteps.findIndex(s => s.id === stepper.current.id);
 
   return (
     <FormProvider {...form}>
@@ -145,7 +147,7 @@ const AppointmentCreate: FC = () => {
               <React.Fragment key={step.id}>
                 <StepButton
                   index={index}
-                  currentIndex={currentIndex}
+                  currentIndex={currentStepIndex}
                   label={step.label}
                   onClick={() => goToStep(index, step.id)}
 
@@ -168,7 +170,7 @@ const AppointmentCreate: FC = () => {
         {/* Stepper Content */}
         <div className="space-y-6">
           {stepper.switch({
-            patient: () => !isUserPatient && <PatientSelector />,
+            patient: () => (isUserPatient ? undefined : <PatientSelector />),
             doctor: () => <DoctorSelector />,
             schedule: () => (!!doctorId && <DoctorSchedule doctorId={doctorId} />),
             reason: () => <ReasonInput />,
@@ -196,7 +198,7 @@ const AppointmentCreate: FC = () => {
                 disabled={
                   (stepper.current.id === 'schedule' && !appointmentStart) ||
                   (stepper.current.id === 'doctor' && !doctorId) ||
-                  (stepper.current.id === 'patient' && !patientId)
+                  (stepper.current.id === 'patient' && !patientId && !isUserPatient)
                 }
               >
                 Siguiente
