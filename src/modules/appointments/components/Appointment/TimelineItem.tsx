@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import dayjs from "dayjs";
 import type { AppointmentResponse } from "../../types/AppointmentResponse";
-import { AppointmentCard } from "./AppointmentCard";
+import AppointmentCard from "./AppointmentCard";
 
 interface TimelineItemProps {
   date: string;
