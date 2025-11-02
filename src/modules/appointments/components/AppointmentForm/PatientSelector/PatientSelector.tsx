@@ -35,7 +35,7 @@ const PatientSelector: FC = () => {
         <SearchBar
           filtering={searchEmail}
           setFiltering={setSearchEmail}
-          placeholder="Buscar por Correo Electrónico..."
+          placeholder="Buscar Email..."
         />
       </div>
 
