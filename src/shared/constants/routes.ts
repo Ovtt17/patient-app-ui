@@ -10,4 +10,6 @@ export const Routes = {
   APPOINTMENTS: '/citas',
   APPOINTMENT_DETAILS: '/citas/:id',
   APPOINTMENTS_CREATE: '/citas/crear',
+
+  MEDICAL_RECORDS: '/registros-medicos',
 } as const;
