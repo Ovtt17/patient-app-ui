@@ -1,4 +1,4 @@
-import { toastAction, ToastActionParams } from './toastAction';
+import { toastAction, type ToastActionParams } from './toastAction';
 
 export async function toastCreate<T>({
   actionFn,
