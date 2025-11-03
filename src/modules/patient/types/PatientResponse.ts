@@ -12,7 +12,7 @@ export interface PatientResponse {
   userId: string;
   weight: number;
   height: number;
-  birthDate: string;
+  birthDate: Date;
   notes: string;
   roles: Role[];
 }
