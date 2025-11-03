@@ -3,6 +3,7 @@ import { Routes } from "@/shared/constants/routes";
 import { lazy, Suspense } from "react";
 import type { RouteObject } from "react-router-dom";
 import { AppointmentFiltersProvider } from "../context/AppointmentFiltersContext";
+import AppointmentDetail from "../pages/AppointmentDetail";
 
 const Appointment = lazy(() => import("../pages/Appointment"));
 const AppointmentCreate = lazy(() => import("../pages/AppointmentCreate"));
@@ -25,6 +26,14 @@ const appointmentRoutes: RouteObject[] = [
         <AppointmentCreate />
       </Suspense>
     ),
+  },
+  {
+    path: Routes.APPOINTMENT_DETAILS,
+    element: (
+      <Suspense fallback={<Loader />}>
+        <AppointmentDetail />
+      </Suspense>
+    )
   }
 ];
 
