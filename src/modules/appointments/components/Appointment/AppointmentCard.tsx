@@ -11,6 +11,8 @@ import { toastUpdate } from "@/shared/utils/toastUpdate";
 import { updateAppointmentStatus } from "../../api/appointment.api";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAppointmentFilters } from "../../context/AppointmentFiltersContext";
+import { NavLink } from "react-router-dom";
+import { Routes } from "@/shared/constants/routes";
 
 interface AppointmentCardProps {
   appointment: AppointmentResponse;
@@ -53,7 +55,7 @@ const AppointmentCard: FC<AppointmentCardProps> = ({ appointment }) => {
 
     if (updated) setStatus(newStatus);
     queryClient.invalidateQueries({
-      queryKey: ['appointments', 'filter', JSON.stringify(filters)]
+      queryKey: ["appointments", "filter", JSON.stringify(filters)],
     });
   };
 
@@ -66,12 +68,24 @@ const AppointmentCard: FC<AppointmentCardProps> = ({ appointment }) => {
             <div className="flex items-center gap-2">
               <User2 className="h-5 w-5 text-primary" />
               <div className="flex flex-col leading-tight">
-                {isUserDoctor && <span className="font-semibold text-base text-foreground">Paciente: {appointment.patientName}</span>}
-                {isUserPatient && <span className="font-semibold text-base text-foreground">Doctor: {appointment.doctorName}</span>}
+                {isUserDoctor && (
+                  <span className="font-semibold text-base text-foreground">
+                    Paciente: {appointment.patientName}
+                  </span>
+                )}
+                {isUserPatient && (
+                  <span className="font-semibold text-base text-foreground">
+                    Doctor: {appointment.doctorName}
+                  </span>
+                )}
                 {isUserAdmin && (
                   <>
-                    <span className="font-semibold text-base text-foreground">Doctor: {appointment.doctorName}</span>
-                    <span className="font-semibold text-base text-foreground">Paciente: {appointment.patientName}</span>
+                    <span className="font-semibold text-base text-foreground">
+                      Doctor: {appointment.doctorName}
+                    </span>
+                    <span className="font-semibold text-base text-foreground">
+                      Paciente: {appointment.patientName}
+                    </span>
                   </>
                 )}
               </div>
@@ -88,9 +102,13 @@ const AppointmentCard: FC<AppointmentCardProps> = ({ appointment }) => {
           ) : (
             <Select
               value={status}
-              onChange={e => handleChangeStatus(e.target.value as typeof status)}
+              onChange={(e) => handleChangeStatus(e.target.value as typeof status)}
               className={`text-xs px-3 py-1.5 font-medium capitalize border rounded-full ${selectStyles[status]}`}
-              options={APPOINTMENT_STATUSES.map(s => ({ value: s, label: s, className: optionStyles[s] }))}
+              options={APPOINTMENT_STATUSES.map((s) => ({
+                value: s,
+                label: s,
+                className: optionStyles[s],
+              }))}
             />
           )}
         </div>
@@ -111,6 +129,18 @@ const AppointmentCard: FC<AppointmentCardProps> = ({ appointment }) => {
               <span className="font-medium text-foreground">Motivo: </span>
               {appointment.reason}
             </p>
+          </div>
+        )}
+
+        {/* Botón para ver detalles */}
+        {isUserDoctor || isUserAdmin && (
+          <div className="flex justify-end pt-2">
+            <NavLink
+              to={Routes.APPOINTMENT_DETAILS.replace(":id", appointment.id.toString())}
+              className='flex justify-center items-center bg-gradient-to-br from-primary to-secondary hover:to-secondary-hover text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-all duration-200 ease-in-out'
+            >
+              Ver detalles
+            </NavLink>
           </div>
         )}
       </CardContent>
