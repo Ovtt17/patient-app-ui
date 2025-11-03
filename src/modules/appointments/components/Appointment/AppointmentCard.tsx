@@ -13,6 +13,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useAppointmentFilters } from "../../context/AppointmentFiltersContext";
 import { NavLink } from "react-router-dom";
 import { Routes } from "@/shared/constants/routes";
+import ActionButtons from "@/shared/components/Button/ActionButtons";
 
 interface AppointmentCardProps {
   appointment: AppointmentResponse;
@@ -57,6 +58,10 @@ const AppointmentCard: FC<AppointmentCardProps> = ({ appointment }) => {
     queryClient.invalidateQueries({
       queryKey: ["appointments", "filter", JSON.stringify(filters)],
     });
+  };
+
+  const onDelete = (appointmentId: number) => {
+    console.log("Eliminar cita:", appointmentId);
   };
 
   return (
@@ -133,7 +138,7 @@ const AppointmentCard: FC<AppointmentCardProps> = ({ appointment }) => {
         )}
 
         {/* Botón para ver detalles */}
-        {isUserDoctor || isUserAdmin && (
+        {(isUserDoctor || isUserAdmin) && (
           <div className="flex justify-end pt-2">
             <NavLink
               to={Routes.APPOINTMENT_DETAILS.replace(":id", appointment.id.toString())}
@@ -141,6 +146,14 @@ const AppointmentCard: FC<AppointmentCardProps> = ({ appointment }) => {
             >
               Ver detalles
             </NavLink>
+          </div>
+        )}
+        {isUserPatient && (
+          <div className="flex justify-end mt-5 pt-4 border-t border-gray-200 dark:border-gray-800">
+            <ActionButtons
+              entityId={appointment.id}
+              onDelete={onDelete}
+            />
           </div>
         )}
       </CardContent>

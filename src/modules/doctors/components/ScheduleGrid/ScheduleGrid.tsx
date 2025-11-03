@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import type { ScheduleResponse } from "../../types/ScheduleResponse";
 import { parse, format } from "date-fns";
+import ActionButtons from "@/shared/components/Button/ActionButtons";
 
 interface ScheduleGridProps {
   schedules: ScheduleResponse[];
@@ -45,6 +46,14 @@ export const ScheduleGrid: FC<ScheduleGridProps> = ({ schedules }) => {
     (a, b) => dayOrder[a.dayOfWeek] - dayOrder[b.dayOfWeek]
   );
 
+  const onEdit = (scheduleId: number) => {
+    console.log("Editar horario:", scheduleId);
+  };
+
+  const onDelete = (scheduleId: number) => {
+    console.log("Eliminar horario:", scheduleId);
+  };
+
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {sorted.map((s) => (
@@ -75,6 +84,13 @@ export const ScheduleGrid: FC<ScheduleGridProps> = ({ schedules }) => {
               <span className="font-medium">
                 {formatTime(s.startTime)} - {formatTime(s.endTime)}
               </span>
+            </div>
+            <div className="flex justify-end mt-5 pt-4 border-t border-gray-200 dark:border-gray-800">
+              <ActionButtons
+                entityId={s.id}
+                onEdit={onEdit}
+                onDelete={onDelete}
+              />
             </div>
           </CardContent>
         </Card>

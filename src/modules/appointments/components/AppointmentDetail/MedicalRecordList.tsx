@@ -39,7 +39,7 @@ const MedicalRecordList: FC<MedicalRecordListProps> = ({ patientId }) => {
       {medicalRecords.map((record) => (
         <div
           key={record.id}
-          className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] space-y-2 text-sm text-gray-700 dark:text-gray-200"
+          className="p-6 bg-whiter dark:bg-gray-800 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] space-y-2 text-sm text-gray-700 dark:text-gray-200"
         >
           <h3 className="text-lg font-semibold">Expediente Médico #{record.id}</h3>
           <p><span className="font-medium">Fecha creación:</span> {formatDate(record.createdDate)}</p>

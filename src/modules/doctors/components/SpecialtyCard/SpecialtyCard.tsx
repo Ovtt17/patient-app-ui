@@ -1,13 +1,24 @@
 import { cn } from "@/lib/utils";
 import type { SpecialtyResponse } from "../../types/SpecialtyResponse";
 import { BeakerIcon } from "@heroicons/react/24/outline";
+import { useAuth } from "@/shared/context/auth/useAuth";
+import ActionButtons from "@/shared/components/Button/ActionButtons";
 
 interface SpecialtyCardProps {
   specialty: SpecialtyResponse;
 }
 
 export const SpecialtyCard = ({ specialty }: SpecialtyCardProps) => {
+  const { isUserAdmin } = useAuth();
   const { id, name, description } = specialty;
+
+  const onEdit = (specialtyId: number) => {
+    console.log("Editar especialidad:", specialtyId);
+  }
+
+  const onDelete = (specialtyId: number) => {
+    console.log("Eliminar especialidad:", specialtyId);
+  }
 
   return (
     <article
@@ -30,6 +41,15 @@ export const SpecialtyCard = ({ specialty }: SpecialtyCardProps) => {
       <p className="text-sm text-gray-600 dark:text-gray-400">
         {description || "Descripción no disponible."}
       </p>
+      {isUserAdmin && (
+        <div className="flex justify-end mt-5 pt-4 border-t border-gray-200 dark:border-gray-800">
+          <ActionButtons
+            entityId={specialty.id}
+            onEdit={onEdit}
+            onDelete={onDelete}
+          />
+        </div>
+      )}
     </article>
   );
 };

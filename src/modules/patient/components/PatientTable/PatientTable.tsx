@@ -4,13 +4,16 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { type ColumnDef, flexRender, useReactTable, getCoreRowModel, getFilteredRowModel, type SortingState, getSortedRowModel } from "@tanstack/react-table";
 import { useState } from "react";
 import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/24/solid";
-import SearchBar from "@/shared/components/SearchBar/SearchBar"; // O tu componente de búsqueda
+import SearchBar from "@/shared/components/SearchBar/SearchBar";
+import { useAuth } from "@/shared/context/auth/useAuth";
+import ActionButtons from "@/shared/components/Button/ActionButtons";
 
 interface PatientTableProps {
   patients: PatientResponse[];
 }
 
 export const PatientTable: FC<PatientTableProps> = ({ patients }) => {
+  const { isUserAdmin, isUserDoctor } = useAuth();
   const [sorting, setSorting] = useState<SortingState>([]);
   const [filtering, setFiltering] = useState("");
 
@@ -19,6 +22,21 @@ export const PatientTable: FC<PatientTableProps> = ({ patients }) => {
     { accessorKey: "email", header: "Email" },
     { accessorKey: "phone", header: "Teléfono" },
     { accessorKey: "gender", header: "Género" },
+    ...(isUserAdmin || isUserDoctor ? [
+      {
+        header: "Acciones",
+        cell: ({ row }: { row: { original: PatientResponse } }) => {
+          const patient = row.original;
+
+          return <ActionButtons
+            entityId={patient.id}
+            onView={onView}
+            onEdit={onEdit}
+            onDelete={onDelete}
+          />;
+        },
+      },
+    ] : []),
   ];
 
   const table = useReactTable({
@@ -31,6 +49,21 @@ export const PatientTable: FC<PatientTableProps> = ({ patients }) => {
     onSortingChange: setSorting,
     onGlobalFilterChange: setFiltering,
   });
+
+  const onView = (patientId: string) => {
+    // Lógica para ver el paciente
+    console.log("Ver paciente:", patientId);
+  }
+
+  const onEdit = (patientId: string) => {
+    // Lógica para editar el paciente
+    console.log("Editar paciente:", patientId);
+  }
+
+  const onDelete = (patientId: string) => {
+    // Lógica para eliminar el paciente
+    console.log("Eliminar paciente:", patientId);
+  }
 
   return (
     <>
