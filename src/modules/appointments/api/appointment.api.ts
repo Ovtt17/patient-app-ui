@@ -5,9 +5,9 @@ import type { AppointmentResponse } from "../types/AppointmentResponse";
 import type { AppointmentFilter } from "../types/AppointmentFilter";
 import type { AppointmentStatus } from "../types/AppointmentStatus";
 
-export const createAppointment = async (request: AppointmentRequest): Promise<AppointmentRequest> => {
+export const createAppointment = async (request: AppointmentRequest): Promise<AppointmentResponse> => {
   try {
-    const response = await axiosInstance.post<AppointmentRequest>(`/appointments`, request);
+    const response = await axiosInstance.post<AppointmentResponse>(`/appointments`, request);
     return response.data;
   } catch (error) {
     throw handleError(error);
@@ -15,9 +15,9 @@ export const createAppointment = async (request: AppointmentRequest): Promise<Ap
 };
 
 
-export const getAppointmentById = async (id: number): Promise<AppointmentRequest> => {
+export const getAppointmentById = async (id: number): Promise<AppointmentResponse> => {
   try {
-    const response = await axiosInstance.get<AppointmentRequest>(`/appointments/${id}`);
+    const response = await axiosInstance.get<AppointmentResponse>(`/appointments/${id}`);
     return response.data;
   } catch (error) {
     throw handleError(error);
