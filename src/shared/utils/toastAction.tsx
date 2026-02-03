@@ -1,4 +1,4 @@
-import { ProcessedError } from '@/app/error/processErrorResponse';
+import type { ProcessedError } from '@/modules/errors/types/exception-response.types';
 import { toast } from 'react-toastify';
 
 export interface ToastActionParams<T> {

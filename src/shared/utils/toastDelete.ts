@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { toastAction, ToastActionParams } from './toastAction';
+import { toastAction, type ToastActionParams } from './toastAction';
 
 export interface ToastDeleteParams<T> extends ToastActionParams<T> {
   undoFn?: () => Promise<any>;

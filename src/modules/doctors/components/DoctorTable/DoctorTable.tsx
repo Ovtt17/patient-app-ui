@@ -7,14 +7,29 @@ import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/24/solid";
 import SearchBar from "@/shared/components/SearchBar/SearchBar"; // tu componente de búsqueda
 import { Badge } from "@/components/ui/badge";
 import type { SpecialtyResponse } from "../../types/SpecialtyResponse";
+import ActionButtons from "@/shared/components/Button/ActionButtons";
+import { useAuth } from "@/shared/context/auth/useAuth";
 
 interface DoctorTableProps {
   doctors: DoctorResponse[];
 }
 
 const DoctorTable: FC<DoctorTableProps> = ({ doctors }) => {
+  const { isUserAdmin } = useAuth();
   const [sorting, setSorting] = useState<SortingState>([]);
   const [filtering, setFiltering] = useState("");
+
+  const onView = (doctorId: string) => {
+    console.log("Ver doctor:", doctorId);
+  };
+
+  const onEdit = (doctorId: string) => {
+    console.log("Editar doctor:", doctorId);
+  };
+
+  const onDelete = (doctorId: string) => {
+    console.log("Eliminar doctor:", doctorId);
+  };
 
   const columns: ColumnDef<DoctorResponse>[] = useMemo(
     () => [
@@ -40,8 +55,22 @@ const DoctorTable: FC<DoctorTableProps> = ({ doctors }) => {
             ))}
           </div>
         )
-      }
+      },
+      ...(isUserAdmin ? [
+        {
+          header: "Acciones",
+          cell: ({ row }: { row: { original: DoctorResponse } }) => {
+            const doctor = row.original;
 
+            return <ActionButtons
+              entityId={doctor.id}
+              onView={onView}
+              onEdit={onEdit}
+              onDelete={onDelete}
+            />;
+          },
+        },
+      ] : []),
     ],
     []
   );

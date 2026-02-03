@@ -1,5 +1,6 @@
 import appointmentRoutes from "@/modules/appointments/routes/appointment.routes";
 import UserProfiles from "@/modules/auth/pages/UserProfiles";
+import medicalRecordRoutes from "@/modules/medical-record/routes/medicalRecordRoutes";
 import Loader from "@/shared/components/Loader/Loader";
 import { Routes } from "@/shared/constants/routes";
 import { Suspense } from "react";
@@ -7,6 +8,7 @@ import type { RouteObject } from "react-router-dom";
 
 const protectedRoutes: RouteObject[] = [
   ...appointmentRoutes,
+  ...medicalRecordRoutes,
   {
     path: Routes.PROFILE,
     element: (

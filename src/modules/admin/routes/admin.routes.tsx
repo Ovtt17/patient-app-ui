@@ -14,10 +14,6 @@ const PatientCreate = lazy(() => import("@/modules/patient/pages/PatientCreate")
 
 const adminRoutes: RouteObject[] = [
   {
-    path: "/",
-    element: <Navigate to={RoutesAdmin.ADMIN_DASHBOARD} replace />,
-  },
-  {
     path: '/admin',
     element: <Navigate to={RoutesAdmin.ADMIN_DASHBOARD} replace />,
   },

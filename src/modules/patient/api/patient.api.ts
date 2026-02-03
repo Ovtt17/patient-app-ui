@@ -3,6 +3,7 @@ import axiosInstance from "@/config/axiosInstance";
 import type { PatientPagedResponse } from "../types/PatientPagedResponse";
 import type { PaginationParams } from "@/shared/types/PaginationParams";
 import type { PatientResponse } from "../types/PatientResponse";
+import type { PatientMedicalInfo } from "../types/PatientMedicalInfo";
 
 export const getPatientById = async (id: string): Promise<PatientResponse> => {
   try {
@@ -33,3 +34,12 @@ export const getAllActivePatients = async ({
     throw handleError(error);
   }
 };
+
+export const updatePatientMedicalInfo = async (userId: string, request: PatientMedicalInfo): Promise<PatientResponse> => {
+  try {
+    const response = await axiosInstance.put(`/patients/${userId}/medical-info`, request);
+    return response.data;
+  } catch (error) {
+    throw handleError(error);
+  }
+}

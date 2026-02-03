@@ -23,6 +23,11 @@ const sharedMenuItems: SidebarMenuItem[] = [
       },
     ],
   },
+  {
+    title: "Registros Médicos",
+    icon: <CalendarDaysIcon />,
+    href: Routes.MEDICAL_RECORDS,
+  }
 ];
 
 export default sharedMenuItems;

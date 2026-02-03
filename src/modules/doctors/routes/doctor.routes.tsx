@@ -2,19 +2,15 @@ import { Navigate, type RouteObject } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loader from "@/shared/components/Loader/Loader";
 import { RoutesDoctor } from './RoutesDoctor';
-import DoctorDashboard from "../pages/DoctorDashboard";
 
 const Specialty = lazy(() => import("@/modules/doctors/pages/Specialty"));
 const ScheduleCreate = lazy(() => import("../pages/ScheduleCreate"));
 const Patient = lazy(() => import("@/modules/patient/pages/Patient"));
 const PatientCreate = lazy(() => import("@/modules/patient/pages/PatientCreate"));
 const Schedule = lazy(() => import("@/modules/doctors/pages/Schedule"));
+const DoctorDashboard = lazy(() => import("../pages/DoctorDashboard"));
 
 const doctorRoutes: RouteObject[] = [
-	{
-		path: "/",
-		element: <Navigate to={RoutesDoctor.DOCTOR_DASHBOARD} replace />,
-	},
 	{
 		path: '/doctor',
 		element: <Navigate to={RoutesDoctor.DOCTOR_DASHBOARD} replace />,

@@ -7,12 +7,16 @@ import {
 } from "@heroicons/react/24/outline";
 import { cn } from "@/lib/utils";
 import type { DoctorResponse } from "@/modules/doctors/types/DoctorResponse";
+import { useAuth } from "@/shared/context/auth/useAuth";
+import ActionButtons from "@/shared/components/Button/ActionButtons";
 
 interface DoctorCardProps {
   doctor: DoctorResponse;
 }
 
 export const DoctorCard = ({ doctor }: DoctorCardProps) => {
+  const { isUserAdmin } = useAuth();
+
   const {
     id,
     firstName,
@@ -25,6 +29,18 @@ export const DoctorCard = ({ doctor }: DoctorCardProps) => {
     officeNumber,
     specialties,
   } = doctor;
+
+  const onView = (doctorId: string) => {
+    console.log("Ver doctor:", doctorId);
+  };
+
+  const onEdit = (doctorId: string) => {
+    console.log("Editar doctor:", doctorId);
+  };
+
+  const onDelete = (doctorId: string) => {
+    console.log("Eliminar doctor:", doctorId);
+  };
 
   return (
     <article
@@ -96,6 +112,18 @@ export const DoctorCard = ({ doctor }: DoctorCardProps) => {
           <span className="text-xs text-gray-400 italic">Sin especialidades</span>
         )}
       </div>
+      {
+        (isUserAdmin) && (
+          <div className="flex justify-end mt-5 pt-4 border-t border-gray-200 dark:border-gray-800">
+            <ActionButtons
+              entityId={id}
+              onView={onView}
+              onEdit={onEdit}
+              onDelete={onDelete}
+            />
+          </div>
+        )
+      }
     </article>
   );
 };
